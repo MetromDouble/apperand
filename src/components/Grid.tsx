@@ -7,6 +7,7 @@ interface IGridContainerProps {
 }
 const GridContainer = styled.div<IGridContainerProps>`
   display: grid;
+  height: 100%;
   grid-template-rows: ${props => props.rows.join(' ')};
   grid-template-columns: ${props => props.columns.join(' ')};
 `;
@@ -21,7 +22,7 @@ const GridArea = styled.div<IGridAreaProps>`
 
 export const Grid = () => {
   return (
-    <GridContainer columns={['200px', '200px', 'auto', '200px', '200px']} rows={['100px', 'auto', '100px']}>
+    <GridContainer columns={['30px', '30px', 'auto', '30px', '30px']} rows={['20px', 'auto', '20px']}>
       <GridArea area={['1', '2', '3', '5']} style={{ background: '#eee' }} />
       <GridArea area={['2', '3', '4', '6']} style={{ background: '#444' }} />
     </GridContainer>
