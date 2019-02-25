@@ -1,4 +1,4 @@
-# Siriuskit
+# Stiokit
 
 Just web-app constructor
 
