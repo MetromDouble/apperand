@@ -4,6 +4,7 @@ import { Main } from 'src/entries/Main';
 import { Grid } from 'src/components/Grid';
 import { Sandbox } from 'src/components/Sandbox';
 import { FactorioRecipes } from 'src/components/FactorioRecipes';
+import { Calendar } from 'src/components/calendar/Calendar';
 
 export const Root = () => {
   return (
@@ -12,6 +13,7 @@ export const Root = () => {
       <Route path="/grid" exact component={Grid} />
       <Route path="/sandbox" exact component={Sandbox} />
       <Route path="/factorio" exact component={FactorioRecipes} />
+      <Route path="/calendar" exact component={Calendar} />
     </>
   );
 };
