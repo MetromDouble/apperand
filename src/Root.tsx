@@ -5,6 +5,8 @@ import { Grid } from 'src/components/Grid';
 import { Sandbox } from 'src/components/Sandbox';
 import { FactorioRecipes } from 'src/components/FactorioRecipes';
 import { Calendar } from 'src/components/calendar/Calendar';
+import { Relation } from 'src/components/relation/Relation';
+import { HTMLSandbox } from 'src/components/HTMLSandbox/HTMLSandbox';
 
 export const Root = () => {
   return (
@@ -14,6 +16,8 @@ export const Root = () => {
       <Route path="/sandbox" exact component={Sandbox} />
       <Route path="/factorio" exact component={FactorioRecipes} />
       <Route path="/calendar" exact component={Calendar} />
+      <Route path="/relation" exact component={Relation} />
+      <Route path="/html-sandbox" exact component={HTMLSandbox} />
     </>
   );
 };
