@@ -6,12 +6,11 @@ import { Button } from 'src/components/Button/Button';
 // }
 
 export const HeaderButton = styled(Button)`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding-left: 7px;
   padding-right: 7px;
   height: 100%;
-  font-size: 24px;
   color: ${props => props.theme.palette.maxLight};
   &:hover {
     background: ${({ theme: { palette } }) => palette.minLight};
