@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styledThemes';
 // import * as monaco from 'monaco-editor';
 import configureStore from './redux/configureStore';
 import { Root } from './Root';
@@ -16,7 +18,9 @@ const store = configureStore(history, {});
 ReactDOM.render((
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Root />
+      <ThemeProvider theme={theme}>
+        <Root />
+      </ThemeProvider>
     </ConnectedRouter>
   </Provider>
 ), document.getElementById('root'));
