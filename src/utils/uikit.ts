@@ -1,5 +1,4 @@
 export type ButtonTypes = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'clean';
-export type ButtonSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'wide';
 type ButtonTypesIndex = {
   [index in ButtonTypes]: {
     default: {
@@ -24,6 +23,8 @@ type ButtonTypesIndex = {
     },
   }
 }
+
+export type ButtonSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'wide';
 type ButtonSizesIndex = {
   [index in ButtonSizes]: {
     height: string;
@@ -31,6 +32,13 @@ type ButtonSizesIndex = {
     fontSize: string;
   }
 }
+
+export type IconSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl';
+type IconSizesIndex = {
+  [index in IconSizes]: number;
+}
+
+export type Directions = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw' | 'ns' | 'ew' | 'nesw' | 'nwse';
 
 export const palette = {
   maxLight: '#ffffff',
@@ -91,6 +99,15 @@ export const sizeMap: ButtonSizesIndex = {
     paddingHorizontal: '0',
     fontSize: '16px',
   },
+};
+
+export const iconWidthMap: IconSizesIndex = {
+  xxs: 12,
+  xs: 16,
+  s: 24,
+  m: 32,
+  l: 36,
+  xl: 40,
 };
 
 export const btnColorMap: ButtonTypesIndex = {
