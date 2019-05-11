@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, NoIcon, IIconProps } from 'src/components/icons/Icon';
+import { Icon, NoIcon, IComboIconProps } from 'src/components/icons/Icon';
 
 type ComboType =
   'block' |
@@ -20,11 +20,8 @@ const comboMap: ComboTypeIndex = {
   'inline-block': (<><path d="M3 13V3h1V2H2v12h2v-1zM13 2h-1v1h1v10h-1v1h2V2zm-3 2H4v8h8V4h-2zm0 6H6V6h4v4z" /></>),
 };
 
-interface IComboIconProps extends IIconProps {
-  type: ComboType;
-}
 
-export const DisplayRuleComboIcon: React.FC<IComboIconProps> = ({ size, type }) => {
+export const DisplayRuleComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
   return (
     <Icon size={size}>
       {Object.keys(comboMap).reduce(

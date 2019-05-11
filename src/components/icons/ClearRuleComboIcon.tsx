@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, NoIcon, IIconProps } from 'src/components/icons/Icon';
+import { Icon, NoIcon, IComboIconProps } from 'src/components/icons/Icon';
 
 type ComboType = 'left' | 'right' | 'both';
 type ComboTypeIndex = {
@@ -12,11 +12,8 @@ const comboMap: ComboTypeIndex = {
   'both': (<><path d="M2 4h12v3H2zm12.2 7.1L12 9v1H9V8H7v2H4V9l-2.2 1.9L4 13v-1h2s1.4 0 2-1c.6 1 2 1 2 1h2v1l2.2-1.9z" /></>),
 };
 
-interface IComboIconProps extends IIconProps {
-  type: ComboType;
-}
 
-export const ClearRuleComboIcon: React.FC<IComboIconProps> = ({ size, type }) => {
+export const ClearRuleComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
   return (
     <Icon size={size}>
       {Object.keys(comboMap).reduce(

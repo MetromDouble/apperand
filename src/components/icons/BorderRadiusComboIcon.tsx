@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, NoIcon, IIconProps } from 'src/components/icons/Icon';
+import { Icon, NoIcon, IComboIconProps } from 'src/components/icons/Icon';
 
 type ComboType = 'whole' | 'splitted' | 'ne' | 'se' | 'sw' | 'nw';
 type ComboTypeIndex = {
@@ -15,11 +15,8 @@ const comboMap: ComboTypeIndex = {
   'nw': (<><path d="M4 7V5c0-.6.4-1 1-1h2V2H4c-1.1 0-2 .9-2 2v3h2zm8-5H9v1h2.5c.8 0 1.5.7 1.5 1.5V7h1V4c0-1.1-.9-2-2-2zm2 10V9h-1v2.5c0 .8-.7 1.5-1.5 1.5H9v1h3c1.1 0 2-.9 2-2zM4 14h3v-1H4.5c-.8 0-1.5-.7-1.5-1.5V9H2v3c0 1.1.9 2 2 2z" /></>),
 };
 
-interface IComboIconProps extends IIconProps {
-  type: ComboType;
-}
 
-export const BorderRadiusComboIcon: React.FC<IComboIconProps> = ({ size, type }) => {
+export const BorderRadiusComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
   return (
     <Icon size={size}>
       {Object.keys(comboMap).reduce(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, NoIcon, IIconProps } from 'src/components/icons/Icon';
+import { Icon, NoIcon, IComboIconProps } from 'src/components/icons/Icon';
 
 type ComboType = 'e' | 'w';
 type ComboTypeIndex = {
@@ -11,11 +11,8 @@ const comboMap: ComboTypeIndex = {
   'w': (<path d="M8.8 8l4.3-4.2-1.4-1.5L6 8l5.7 5.7 1.4-1.5zM4 14H2V2h2z" />),
 };
 
-interface IComboIconProps extends IIconProps {
-  type: ComboType;
-}
 
-export const AngleArrowStopComboIcon: React.FC<IComboIconProps> = ({ size, type }) => {
+export const AngleArrowStopComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
   return (
     <Icon size={size}>
       {Object.keys(comboMap).reduce(

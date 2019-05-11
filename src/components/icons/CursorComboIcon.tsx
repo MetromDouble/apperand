@@ -1,40 +1,43 @@
 import React from 'react';
-import { Icon, NoIcon, IIconProps } from 'src/components/icons/Icon';
+import { Icon, NoIcon, IComboIconProps } from 'src/components/icons/Icon';
+import { NotAllowedIcon } from 'src/components/icons/NotAllowedIcon';
+import { ZoomInIcon } from 'src/components/icons/ZoomInIcon';
+import { ZoomOutIcon } from 'src/components/icons/ZoomOutIcon';
 
 type ComboType =
-'none' |
-'default' |
-'context-menu' |
-'help' |
-'pointer' |
-'progress' |
-'wait' |
-'cell' |
-'crosshair' |
-'text' |
-'vertical-text' |
-'alias' |
-'copy' |
-'move' |
-'not-allowed' |
-'col-resize' |
-'row-resize' |
-'n-resize' |
-'ne-resize' |
-'e-resize' |
-'se-resize' |
-'s-resize' |
-'sw-resize' |
-'w-resize' |
-'nw-resize' |
-'ew-resize' |
-'ns-resize' |
-'nesw-resize' |
-'nwse-resize' |
-'zoom-in' |
-'zoom-out' |
-'grab' |
-'grabbing';
+  'none' |
+  'default' |
+  'context-menu' |
+  'help' |
+  'pointer' |
+  'progress' |
+  'wait' |
+  'cell' |
+  'crosshair' |
+  'text' |
+  'vertical-text' |
+  'alias' |
+  'copy' |
+  'move' |
+  'not-allowed' |
+  'col-resize' |
+  'row-resize' |
+  'n-resize' |
+  'ne-resize' |
+  'e-resize' |
+  'se-resize' |
+  's-resize' |
+  'sw-resize' |
+  'w-resize' |
+  'nw-resize' |
+  'ew-resize' |
+  'ns-resize' |
+  'nesw-resize' |
+  'nwse-resize' |
+  'zoom-in' |
+  'zoom-out' |
+  'grab' |
+  'grabbing';
 
 type ComboTypeIndex = {
   [index in ComboType]: React.ReactNode;
@@ -55,7 +58,7 @@ const comboMap: ComboTypeIndex = {
   'alias': (<><path d="M11.3 4h-6l1.8 1.8C5.8 7.1 5 8.8 5 10.7c0 1.4.4 2.8 1.2 3.9-.1-.4-.2-.9-.2-1.4 0-2.3 1.4-4.2 3.4-5l1.8 1.8V4z" /></>),
   'copy': (<><path d="M8 7L3 2v6.9l1.5-1.5 1 2.4 1.1-.5L5.7 7zm3 1v5h-1V8z" /><path d="M8 10h5v1H8z" /></>),
   'move': (<><path d="M14 8l-2.8-2.8V7H9V4.8h1.8L8 2 5.2 4.8H7V7H4.8V5.2L2 8l2.8 2.8V9H7v2.2H5.2L8 14l2.8-2.8H9V9h2.2v1.8z" /></>),
-  'not-allowed': (<><path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 1.5c1 0 1.9.3 2.6.8l-6.3 6.3C3.8 9.9 3.5 9 3.5 8c0-2.5 2-4.5 4.5-4.5zm0 9c-1 0-1.9-.3-2.6-.8l6.3-6.3c.5.7.8 1.6.8 2.6 0 2.5-2 4.5-4.5 4.5z" /></>),
+  'not-allowed': (<NotAllowedIcon onlyPath />),
   'col-resize': (<><path d="M7 7H4.8V5.2L2 8l2.8 2.8V9H7v4h1V3H7zm2 0v2h2.2v1.8L14 8l-2.8-2.8V7z" /></>),
   'row-resize': (<><path d="M9 7V4.8h1.8L8 2 5.2 4.8H7V7H3v1h10V7zm0 2H7v2.2H5.2L8 14l2.8-2.8H9z" /></>),
   'n-resize': (<><path d="M7 11.2V13h2V4.8h1.8L8 2 5.2 4.8H7V8z" /></>),
@@ -70,17 +73,14 @@ const comboMap: ComboTypeIndex = {
   'ns-resize': (<><path d="M8 14l2.8-2.8H9V4.8h1.8L8 2 5.2 4.8H7v6.4H5.2z" /></>),
   'nesw-resize': (<><path d="M5.7 11.7l6-6L13 7V3H9l1.3 1.3-6 6L3 9v4h4z" /></>),
   'nwse-resize': (<><path d="M11.7 10.3l-6-6L7 3H3v4l1.3-1.3 6 6L9 13h4V9z" /></>),
-  'zoom-in': (<><path d="M14.2 12.8L12 10.6c.6-.9 1-2 1-3.1 0-3-2.5-5.5-5.5-5.5S2 4.5 2 7.5 4.5 13 7.5 13c1.2 0 2.2-.4 3.1-1l2.2 2.2 1.4-1.4zM3.5 7.5c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" /><path d="M10.5 6.8H8.3V4.5H6.8v2.3H4.5v1.5h2.3v2.2h1.5V8.3h2.2z" /></>),
-  'zoom-out': (<><path d="M14.2 12.8L12 10.6c.6-.9 1-2 1-3.1 0-3-2.5-5.5-5.5-5.5S2 4.5 2 7.5 4.5 13 7.5 13c1.2 0 2.2-.4 3.1-1l2.2 2.2 1.4-1.4zM3.5 7.5c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" /><path d="M10.5 6.8v1.5h-6V6.8z" /></>),
+  'zoom-in': (<ZoomInIcon onlyPath />),
+  'zoom-out': (<ZoomOutIcon onlyPath />),
   'grab': (<><path d="M12.2 6.4L11.7 8H11l.5-2.8c.3-2-1.3-2-1.4-1.3L9.5 8H9V3c0-.6-.4-1-1-1s-1 .4-1 1l.2 5h-.6l-.4-3.8C6 3.1 5.4 2.8 4.8 3c-.5.2-.7.7-.6 1.4L5 8.2v2.4L3.3 8.4c-.3-.4-.9-.5-1.4-.2-.4.3-.6.9-.2 1.4l3.5 4.3c.5.7 1.3 1.1 2.2 1.1h3.9l.7-1.8c.7-1.6 1-3.3 1-5l.4-1.1c.4-1.6-.9-1.9-1.2-.7zM7 14l-1-3h1v3zm1.5.5L8 11h1l-.5 3.5zM10 14v-3h1l-1 3z" /></>),
   'grabbing': (<><path d="M11.9 5v2H11V5c0-.8-.5-1.2-1.1-1v3H9V4.8c0-.5-.3-.8-.7-.8-.4 0-.8.3-.8.8V7h-1V5C6.1 4.7 5 4.8 5 6v3.6l-.2-.3c-.3-.4-.9-.5-1.4-.2-.4.3-.5.9-.2 1.4l2 2.5c.5.6 1.3 1 2.2 1h3.9l.7-1.8c.7-1.6 1-3.3 1-5V6c0-.7-.5-1.2-1.1-1zM7 13l-1-3h1v3zm1.5.5L8 10h1l-.5 3.5zM10 13v-3h1l-1 3z" /></>),
 };
 
-interface IComboIconProps extends IIconProps {
-  type: ComboType;
-}
 
-export const CursorComboIcon: React.FC<IComboIconProps> = ({ size, type }) => {
+export const CursorComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
   return (
     <Icon size={size}>
       {Object.keys(comboMap).reduce(

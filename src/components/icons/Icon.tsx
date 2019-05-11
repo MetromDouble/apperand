@@ -5,6 +5,10 @@ import { iconWidthMap, IconSizes } from 'src/utils/uikit'
 export interface IIconProps {
   size?: IconSizes;
   fill?: string;
+  onlyPath?: boolean;
+}
+export interface IComboIconProps<T> extends IIconProps {
+  type?: T;
 }
 const IconWrapper = styled.i<IIconProps>`
   display: inline-block;
