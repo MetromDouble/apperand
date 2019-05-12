@@ -70,6 +70,10 @@ import { TriangleArrowComboIcon } from 'src/components/icons/TriangleArrowComboI
 // import { ZoomComboIcon } from 'src/components/icons/ZoomComboIcon';
 import { TextDirectionComboIcon } from 'src/components/icons/TextDirectionComboIcon';
 import { BlurIcon } from 'src/components/icons/BlurIcon';
+import { PanelComboIcon } from 'src/components/icons/PanelComboIcon';
+import { HistoryActionsComboIcon } from 'src/components/icons/HistoryActionsComboIcon';
+import { TreeIcon } from 'src/components/icons/TreeIcon';
+import { HelpIcon } from 'src/components/icons/HelpIcon';
 
 export const Main = () => {
   return (
@@ -119,9 +123,13 @@ export const Main = () => {
           <SimpleArrowComboIcon size={size} type="nw" />
           <br />
           <TriangleArrowComboIcon size={size} type="n" />
+          <TriangleArrowComboIcon size={size} type="ne" />
           <TriangleArrowComboIcon size={size} type="e" />
+          <TriangleArrowComboIcon size={size} type="se" />
           <TriangleArrowComboIcon size={size} type="s" />
+          <TriangleArrowComboIcon size={size} type="sw" />
           <TriangleArrowComboIcon size={size} type="w" />
+          <TriangleArrowComboIcon size={size} type="nw" />
           <br />
           <AxisComboIcon size={size} type="x" />
           <AxisComboIcon size={size} type="y" />
@@ -285,6 +293,12 @@ export const Main = () => {
           <TextDirectionComboIcon size={size} type="ltr" />
           <TextDirectionComboIcon size={size} type="rtl" />
           <br />
+          <PanelComboIcon size={size} type="open" />
+          <PanelComboIcon size={size} type="close" />
+          <br />
+          <HistoryActionsComboIcon size={size} type="undo" />
+          <HistoryActionsComboIcon size={size} type="redo" />
+          <br />
           {/* <ZoomComboIcon size={size} type="in" /> */}
           {/* <ZoomComboIcon size={size} type="out" /> */}
           <br />
@@ -329,6 +343,8 @@ export const Main = () => {
           <STIOIcon size={size} />
           <StyleIcon size={size} />
           <BlurIcon size={size} />
+          <TreeIcon size={size} />
+          <HelpIcon size={size} />
 
           <br />
           <hr />
