@@ -1,15 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import { Button } from 'src/components/Button/Button';
-import { HeaderButton } from 'src/components/HeaderButton/HeaderButton';
+
+import { STIOIcon } from 'src/components/icons/STIOIcon';
+import { PanelComboIcon } from 'src/components/icons/PanelComboIcon';
 
 const HeaderWrapper = styled.div`
   display: flex;
   height: 40px;
   width: 100%;
-  background: ${({ theme: { palette } }) => palette.wetAsphalt};
+  background: ${props => props.theme.palette.wetAsphalt};
+`;
+
+const HeaderButton = styled(Button)`
+  display: inline-flex;
+  align-items: center;
+  padding-left: 7px;
+  padding-right: 7px;
+  height: 100%;
+  color: ${props => props.theme.palette.maxLight};
+  &:hover {
+    background: ${props => props.theme.palette.minLight};
+    border-color: ${props => props.theme.palette.minLight};
+  }
+  &:active {
+    background: ${props => props.theme.palette.primaryStrong};
+    border-color: ${props => props.theme.palette.primaryStrong};
+  }
 `;
 
 const HeaderCenterSection = styled.div`
@@ -19,15 +37,15 @@ const HeaderCenterSection = styled.div`
   align-items: center;
   height: 40px;
   width: 100%;
-  background: ${({ theme: { palette } }) => palette.wetAsphalt};
+  background: ${props => props.theme.palette.wetAsphalt};
 `;
 
 const ProjectTitlePrefix = styled.span`
-  color: ${({ theme: { palette } }) => palette.iron};
+  color: ${props => props.theme.palette.iron};
 `;
 
 const ProjectTitle = styled.span`
-  color: ${({ theme: { palette } }) => palette.maxLight};
+  color: ${props => props.theme.palette.maxLight};
 `;
 
 interface IHeaderProps {
@@ -38,7 +56,7 @@ export const Header: React.FC<IHeaderProps> = () => {
     <>
       <HeaderWrapper>
         <HeaderButton>
-          <MenuIcon />
+          <STIOIcon size="s" />
         </HeaderButton>
         <HeaderCenterSection>
           <ProjectTitle>
@@ -46,7 +64,7 @@ export const Header: React.FC<IHeaderProps> = () => {
           </ProjectTitle>
         </HeaderCenterSection>
         <HeaderButton>
-          Fffff
+          <PanelComboIcon size="s" type="close" />
         </HeaderButton>
       </HeaderWrapper>
         <Button type="default" size="xxs" />

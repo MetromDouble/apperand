@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { Main } from 'src/entries/Main';
+import { Icons } from 'src/entries/Icons';
 import { Grid } from 'src/components/Grid';
 import { Sandbox } from 'src/components/Sandbox';
 import { FactorioRecipes } from 'src/components/FactorioRecipes';
@@ -13,13 +14,14 @@ export const Root = () => {
   return (
     <>
       <Route path="/" exact component={Main} />
-      <Route path="/grid" exact component={Grid} />
-      <Route path="/sandbox" exact component={Sandbox} />
-      <Route path="/factorio" exact component={FactorioRecipes} />
-      <Route path="/calendar" exact component={Calendar} />
-      <Route path="/relation" exact component={Relation} />
-      <Route path="/html-sandbox" exact component={HTMLSandbox} />
-      <Route path="/html-canvas" exact component={HTMLCanvas} />
+      <Route path="/icons" component={Icons} />
+      <Route path="/grid" component={Grid} />
+      <Route path="/sandbox" component={Sandbox} />
+      <Route path="/factorio" component={FactorioRecipes} />
+      <Route path="/calendar" component={Calendar} />
+      <Route path="/relation" component={Relation} />
+      <Route path="/html-sandbox" component={HTMLSandbox} />
+      <Route path="/html-canvas" component={HTMLCanvas} />
     </>
   );
 };

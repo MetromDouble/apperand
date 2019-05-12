@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   width: 240px;
   height: 100%;
-  background: ${({ theme: { palette } }) => palette.steel};
-  color: ${({ theme: { palette } }) => palette.asphalt};
+  background: ${props => props.theme.palette.steel};
+  color: ${props => props.theme.palette.asphalt};
 `;
 
 interface ITreeProps {
