@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Main } from 'src/entries/Main';
 import { Icons } from 'src/entries/Icons';
-import { Grid } from 'src/components/Grid';
+import { Grid } from 'src/components/Grid/Grid';
 import { Sandbox } from 'src/components/Sandbox';
 import { FactorioRecipes } from 'src/components/FactorioRecipes';
 import { Calendar } from 'src/components/calendar/Calendar';

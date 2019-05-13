@@ -8,7 +8,7 @@ import { PanelComboIcon } from 'src/components/icons/PanelComboIcon';
 
 const HeaderWrapper = styled.div`
   display: flex;
-  height: 40px;
+  height: 100%;
   width: 100%;
   background: ${props => props.theme.palette.wetAsphalt};
 `;
@@ -67,13 +67,6 @@ export const Header: React.FC<IHeaderProps> = () => {
           <PanelComboIcon size="s" type="close" />
         </HeaderButton>
       </HeaderWrapper>
-        <Button type="default" size="xxs" />
-        <Button type="default" size="xs" />
-        <Button type="primary" size="s" />
-        <Button type="success" size="m" />
-        <Button type="warning" size="l" />
-        <Button type="danger" size="xl" />
-        <Button type="clean" />
     </>
   );
 };

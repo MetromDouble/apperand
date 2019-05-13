@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import img from 'src/assets/images/factorio/cpu.png';
 
 const CanvasWrapper = styled.div`
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 100px;
-  left: 100px;
-  border: 1px solid black;
+  top: 0;
+  left: 0;
   overflow: hidden;
 `;
 

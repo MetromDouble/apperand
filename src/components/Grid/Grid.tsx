@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IGridContainerProps {
-  columns: Array<string>;
-  rows: Array<string>;
+  columns: string[];
+  rows: string[];
 }
 const GridContainer = styled.div<IGridContainerProps>`
   display: grid;
@@ -13,7 +13,7 @@ const GridContainer = styled.div<IGridContainerProps>`
 `;
 
 interface IGridAreaProps {
-  area: Array<string>;
+  area: string[];
 }
 const GridArea = styled.div<IGridAreaProps>`
   display: block;
