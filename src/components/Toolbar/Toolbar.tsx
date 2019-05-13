@@ -8,6 +8,7 @@ import { HelpIcon } from 'src/components/icons/HelpIcon';
 import { NewFileIcon } from 'src/components/icons/NewFileIcon';
 import { AssetIcon } from 'src/components/icons/AssetIcon';
 import { SettingsIcon } from 'src/components/icons/SettingsIcon';
+import { CursorComboIcon } from 'src/components/icons/CursorComboIcon';
 
 const ToolbarWrapper = styled.div`
   display: flex;
@@ -51,6 +52,9 @@ export const Toolbar = () => {
     <ToolbarWrapper>
       <ToolbarTopSection>
         <ToolbarButton>
+          <CursorComboIcon size="s" type="default" />
+        </ToolbarButton>
+        <ToolbarButton>
           <PlusIcon size="s" />
         </ToolbarButton>
         <ToolbarButton>
@@ -59,11 +63,11 @@ export const Toolbar = () => {
         <ToolbarButton>
           <AssetIcon size="s" />
         </ToolbarButton>
+      </ToolbarTopSection>
+      <ToolbarBottomSection>
         <ToolbarButton>
           <SettingsIcon size="s" />
         </ToolbarButton>
-      </ToolbarTopSection>
-      <ToolbarBottomSection>
         <ToolbarButton>
           <HelpIcon size="s" />
         </ToolbarButton>
