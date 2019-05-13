@@ -75,6 +75,7 @@ import { PanelComboIcon } from 'src/components/icons/PanelComboIcon';
 import { HistoryActionsComboIcon } from 'src/components/icons/HistoryActionsComboIcon';
 import { TreeIcon } from 'src/components/icons/TreeIcon';
 import { HelpIcon } from 'src/components/icons/HelpIcon';
+import { FolderIcon } from 'src/components/icons/FolderIcon';
 
 export const Icons: React.FC = () => {
   return (
@@ -352,6 +353,7 @@ export const Icons: React.FC = () => {
           <BlurIcon size={size} />
           <TreeIcon size={size} />
           <HelpIcon size={size} />
+          <FolderIcon size={size} />
 
           <br />
           <hr />

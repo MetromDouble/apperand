@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import img from 'src/assets/images/factorio/cpu.png';
+import bg from 'src/assets/images/chess-bg.svg';
 
 const CanvasWrapper = styled.div`
   width: 100%;
@@ -16,7 +16,7 @@ const Canvas = styled.div`
   width: 2000px;
   height: 2000px;
   /* background: linear-gradient(135deg, #000000 0%, #ffffff 22%, #207cca 38%, #7db9e8 100%); */
-  background-image: url(${img.toString()});
+  background-image: url(${bg.toString()});
 `;
 
 interface IHTMLCanvasProps {

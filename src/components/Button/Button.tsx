@@ -42,7 +42,7 @@ export const Button = styled.button<IButtonProps>`
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
-  transition: color .2s ease-out, background-color .2s ease-out, border-color .2s ease-out, transform .2s ease-out;
+  transition: color .1s ease-out, background-color .1s ease-out, border-color .1s ease-out, transform .1s ease-out;
   height: ${props => {
     const sizeObject = props.size && sizeMap[props.size];
 
