@@ -5,6 +5,7 @@ import { BreadcrumbsItem } from 'src/components/Breadcrumbs/BreadcrumbsItem';
 
 const BreadcrumbsWrapper = styled.div`
   display: flex;
+  align-items: center;
   height: 100%;
   background: ${props => props.theme.palette.wetPaper};
 `;
