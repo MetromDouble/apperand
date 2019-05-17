@@ -6,6 +6,8 @@ const SettingsWrapper = styled.div`
   height: 100%;
   width: 100%;
   background: ${props => props.theme.palette.wetPaper};
+  box-sizing: border-box;
+  border-left: 1px solid ${props => props.theme.palette.steel};
 `;
 
 export const Settings = () => {

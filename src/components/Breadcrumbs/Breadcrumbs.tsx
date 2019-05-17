@@ -5,16 +5,21 @@ import { BreadcrumbsItem } from 'src/components/Breadcrumbs/BreadcrumbsItem';
 
 const BreadcrumbsWrapper = styled.div`
   display: flex;
-  align-items: center;
   height: 100%;
   background: ${props => props.theme.palette.wetPaper};
+  box-sizing: border-box;
+  border-top: 1px solid ${props => props.theme.palette.steel};
+  padding-top: 3px;
 `;
 
 export const Breadcrumbs = () => {
   return (
     <BreadcrumbsWrapper>
-      <BreadcrumbsItem>
+      <BreadcrumbsItem active>
         Root
+      </BreadcrumbsItem>
+      <BreadcrumbsItem>
+        Sub
       </BreadcrumbsItem>
       <BreadcrumbsItem>
         Sub
