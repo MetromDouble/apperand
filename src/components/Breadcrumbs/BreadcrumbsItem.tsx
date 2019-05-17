@@ -3,12 +3,14 @@ import styled, { ThemeContext } from 'styled-components';
 import cn from 'classnames';
 
 const BreadcrumbsItemWrapper = styled.div`
+  font-size: 13px;
   height: 32px;
   line-height: 28px;
   color: ${props => props.theme.palette.asphalt};
   cursor: pointer;
   user-select: none;
-  display: block;
+  display: flex;
+  align-items: center;
   justify-items: center;
   background: ${props => props.theme.palette.steel};
   padding-left: 16px;
@@ -33,16 +35,15 @@ const BreadcrumbsItemWrapper = styled.div`
       display: none;
     }
   }
-  svg {
-    position: absolute;
-  }
   svg.tail {
+    position: absolute;
     left: 0;
     top: 0;
     width: 11px;
     height: 32px;
   }
   svg.head {
+    position: absolute;
     top: 0;
     right: 0;
     width: 11px;
