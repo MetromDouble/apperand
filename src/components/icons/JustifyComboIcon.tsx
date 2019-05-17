@@ -19,9 +19,9 @@ const comboMap: ComboTypeIndex = {
   'stretch': (<><path d="M4 4h8v3H4zm0 5h8v3H4zM2 2h1v12H2zm11 0h1v12h-1z" /></>),
 };
 
-export const JustifyComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const JustifyComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

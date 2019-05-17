@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const AlarmIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const AlarmIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <path d="M8 2.5C5 2.5 2.5 5 2.5 8S5 13.5 8 13.5 13.5 11 13.5 8 11 2.5 8 2.5zM8 12c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z" />
@@ -12,7 +12,7 @@ export const AlarmIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

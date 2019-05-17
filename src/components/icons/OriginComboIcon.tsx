@@ -27,9 +27,9 @@ const comboMap: ComboTypeIndex = {
   'nw': (<><circle cx="8" cy="8" r="1.5" /><path d="M15 8l-2.8-2.8V7H11v2h1.2v1.8zm-7 7l2.8-2.8H9V11H7v1.2H5.2z" /></>),
 };
 
-export const OriginComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const OriginComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

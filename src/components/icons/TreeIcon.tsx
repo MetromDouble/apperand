@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const TreeIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const TreeIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <path d="M3 3h8v2H3zm2 4h8v2H5zm0 4h8v2H5z" />
@@ -11,7 +11,7 @@ export const TreeIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

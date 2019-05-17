@@ -11,9 +11,9 @@ const comboMap: ComboTypeIndex = {
   'disable': (<><path d="M14 4.5h-2.5V2h-2v4.5H14zM4.5 2v2.5H2v2h4.5V2zm7 12v-2.5H14v-2H9.5V14zM2 11.5h2.5V14h2V9.5H2z" /></>),
 };
 
-export const FullscreenComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const FullscreenComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

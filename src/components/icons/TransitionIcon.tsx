@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const TransitionIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const TransitionIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <circle cx="11" cy="11" r="3" />
@@ -13,7 +13,7 @@ export const TransitionIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

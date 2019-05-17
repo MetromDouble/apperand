@@ -15,9 +15,9 @@ const comboMap: ComboTypeIndex = {
   'out': (<ZoomOutIcon onlyPath />),
 };
 
-export const ZoomComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const ZoomComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const AudioIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const AudioIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <path d="M8 4L6 6H3v4h3l2 2zm3 4zM9.5 5.4l-.5.9c.6.3 1 1 1 1.7s-.4 1.4-1 1.7l.5.9C10.4 10 11 9.1 11 8s-.6-2.1-1.5-2.6z" />
@@ -12,7 +12,7 @@ export const AudioIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

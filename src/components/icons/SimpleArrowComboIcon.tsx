@@ -25,9 +25,9 @@ const comboMap: ComboTypeIndex = {
   'nw': (<><path d="M12 4H4v8h2V7.4l5.1 5.1 1.4-1.4L7.4 6H12z" /></>),
 };
 
-export const SimpleArrowComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const SimpleArrowComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

@@ -13,9 +13,9 @@ const comboMap: ComboTypeIndex = {
   'close': (<><path d="M2 7v2h5.2v1.8L10 8 7.2 5.2V7H2z" /><path d="M4 2v3h2V4h6v8H6v-1H4v3h10V2z" /></>),
 };
 
-export const PanelComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const PanelComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

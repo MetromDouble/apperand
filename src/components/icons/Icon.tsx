@@ -6,18 +6,24 @@ export interface IIconProps {
   size?: IconSizes;
   fill?: string;
   onlyPath?: boolean;
+  className?: string;
 }
 export interface IComboIconProps<T> extends IIconProps {
   type?: T;
 }
 const IconWrapper = styled.i<IIconProps>`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   width: ${props => `${props.size && iconWidthMap[props.size] ? iconWidthMap[props.size] : iconWidthMap.m}px`};
   height: ${props => `${props.size && iconWidthMap[props.size] ? iconWidthMap[props.size] : iconWidthMap.m}px`};
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-export const Icon: React.FC<IIconProps> = ({ children, fill, ...props }) => (
-  <IconWrapper {...props}>
+export const Icon: React.FC<IIconProps> = ({ children, fill, className, ...props }) => (
+  <IconWrapper className={className} {...props}>
     <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill={fill || 'currentColor'}>
       {children}
     </svg>

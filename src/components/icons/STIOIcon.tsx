@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const STIOIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const STIOIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <path d="M4.8 6.2V4.9H1v3.7h2.5v1.2H1V11h3.8V7.4H2.3V6.2h2.5z" />
@@ -14,7 +14,7 @@ export const STIOIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

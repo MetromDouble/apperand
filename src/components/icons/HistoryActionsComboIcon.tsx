@@ -13,9 +13,9 @@ const comboMap: ComboTypeIndex = {
   'redo': (<><path d="M9.9 3.8v2.5c-1.9 0-3.6.7-5 2-1 1-1.7 2.3-1.9 3.6.2-.4.5-.8.8-1.1 1.6-1.6 4-2 5.9-1.1v2.5L14.1 8 9.9 3.8z" /></>),
 };
 
-export const HistoryActionsComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const HistoryActionsComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

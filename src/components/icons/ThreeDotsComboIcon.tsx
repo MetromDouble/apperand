@@ -13,9 +13,9 @@ const comboMap: ComboTypeIndex = {
   'horizontal': (<><circle cx="3" cy="8" r="1.5" /><circle cx="8" cy="8" r="1.5" /><circle cx="13" cy="8" r="1.5" /></>),
 };
 
-export const ThreeDotsComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const ThreeDotsComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

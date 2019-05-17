@@ -15,9 +15,9 @@ const comboMap: ComboTypeIndex = {
   'line-through': (<><path d="M14 8H2v1h5v4h2V9h5zm-2-5H4v2h3v2h2V5h3z" /></>),
 };
 
-export const TextDecorationComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const TextDecorationComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)

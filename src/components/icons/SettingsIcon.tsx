@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IIconProps } from 'src/components/icons/Icon';
 
-export const SettingsIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
+export const SettingsIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
       <path d="M11.6 8c.7-.5 1.3-1.1 1.7-1.6-.3-.8-.7-1.6-1.3-2.2-.6.1-1.4.4-2.2.7-.1-.9-.3-1.6-.5-2.2-.4-.1-.9-.2-1.3-.2s-.9.1-1.3.2c-.2.6-.4 1.3-.5 2.2-.8-.3-1.5-.6-2.2-.7-.6.6-1 1.4-1.3 2.2.4.5 1 1 1.7 1.6-.7.5-1.2 1.1-1.7 1.6.3.8.7 1.6 1.3 2.2.6-.1 1.4-.4 2.2-.7.1.9.3 1.6.5 2.2.4.1.8.2 1.3.2s.9-.1 1.3-.2c.2-.6.4-1.4.5-2.2.8.3 1.6.6 2.2.7.6-.6 1-1.4 1.3-2.2-.5-.5-1-1.1-1.7-1.6zM8 9.5c-.8 0-1.5-.7-1.5-1.5S7.2 6.5 8 6.5s1.5.7 1.5 1.5S8.8 9.5 8 9.5z" />
@@ -11,7 +11,7 @@ export const SettingsIcon: React.FC<IIconProps> = ({ size, onlyPath }) => {
   return onlyPath
     ? path
     : (
-      <Icon size={size}>
+      <Icon size={size} {...props}>
         {path}
       </Icon>
     );

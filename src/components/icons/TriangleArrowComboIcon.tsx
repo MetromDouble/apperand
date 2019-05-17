@@ -25,9 +25,9 @@ const comboMap: ComboTypeIndex = {
   'nw': (<><path d="M12.1 4H4v8.1L12.1 4z" /></>),
 };
 
-export const TriangleArrowComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type }) => {
+export const TriangleArrowComboIcon: React.FC<IComboIconProps<ComboType>> = ({ size, type, ...props }) => {
   return (
-    <Icon size={size}>
+    <Icon size={size} {...props}>
       {Object.keys(comboMap).reduce(
         (prev: React.ReactNode, curr): React.ReactNode => type && curr === type ? comboMap[curr] : prev,
         (<NoIcon />)
