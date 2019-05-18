@@ -14,7 +14,8 @@ const BreadcrumbsWrapper = styled.div`
   padding-top: 3px;
 `;
 
-const StyledFolderIcon = styled(FolderIcon)`
+const MarginIcon = styled.div`
+  display: inline-flex;
   margin-right: 4px;
 `;
 
@@ -22,15 +23,21 @@ export const Breadcrumbs = () => {
   return (
     <BreadcrumbsWrapper>
       <BreadcrumbsItem active>
-        <StyledFolderIcon size="xs" />
+        <MarginIcon>
+          <FolderIcon size="xs" />
+        </MarginIcon>
         Root
       </BreadcrumbsItem>
       <BreadcrumbsItem>
-        <StyledFolderIcon size="xs" />
+        <MarginIcon>
+          <FolderIcon size="xs" />
+        </MarginIcon>
         Sub
       </BreadcrumbsItem>
       <BreadcrumbsItem>
-        <StyledFolderIcon size="xs" />
+        <MarginIcon>
+          <FolderIcon size="xs" />
+        </MarginIcon>
         Sub
       </BreadcrumbsItem>
     </BreadcrumbsWrapper>
