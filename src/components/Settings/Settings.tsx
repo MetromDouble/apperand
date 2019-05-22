@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Tabs } from 'src/components/Tabs';
+
 const SettingsWrapper = styled.div`
   display: flex;
   height: 100%;
@@ -13,6 +15,7 @@ const SettingsWrapper = styled.div`
 export const Settings = () => {
   return (
     <SettingsWrapper>
+      <Tabs />
     </SettingsWrapper>
   );
 };
