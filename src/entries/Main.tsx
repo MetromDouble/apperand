@@ -5,7 +5,7 @@ import { GridContainer } from 'src/components/Grid/GridContainer';
 import { Header } from 'src/components/Header/Header';
 import { WorkArea } from 'src/components/WorkArea/WorkArea';
 import { Toolbar } from 'src/components/Toolbar/Toolbar';
-import { Settings } from 'src/components/Settings/Settings';
+import { Settings } from 'src/components/Settings';
 import { Breadcrumbs } from 'src/components/Breadcrumbs/Breadcrumbs';
 
 export const Main = () => {
