@@ -9,4 +9,8 @@ export const ItemHead = styled.div<IItemHead>`
   padding-left: 4px;
   padding-right: 4px;
   background: ${props => props.active ? props.theme.palette.iron : 'transparent'};
+  transition: background 0.1s ease;
+  &:hover {
+    background: ${props => props.theme.palette.iron};
+  }
 `;

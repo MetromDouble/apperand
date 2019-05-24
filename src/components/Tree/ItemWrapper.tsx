@@ -22,5 +22,10 @@ export const ItemWrapper = styled.div<IItemWrapper>`
     top: 24px;
     left: 9px;
     background: ${props => props.theme.palette.iron};
+    transition: background 0.1s ease;
+    opacity: 0.3;
+  }
+  &:hover::after {
+    background: ${props => props.theme.palette.asphalt};
   }
 `;

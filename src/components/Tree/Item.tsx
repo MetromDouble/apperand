@@ -11,7 +11,7 @@ interface ITriangleArrow {
 }
 const TriangleArrow = styled(TriangleArrowComboIcon)<ITriangleArrow>`
   transform: ${props => props.expanded ? 'rotate(0deg)' : 'rotate(-90deg)'};
-  transition: transform 0.2s ease;
+  transition: transform 0.1s ease;
 `;
 
 interface IItemProps {
