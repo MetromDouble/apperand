@@ -28,7 +28,11 @@ export const Item: React.FC<IItemProps> = (props) => {
   } = props;
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = (event: React.SyntheticEvent) => {
-    setExpanded(!expanded)
+    if (children) {
+      setExpanded(!expanded);
+    } else {
+      setExpanded(false);
+    }
     event.stopPropagation();
   };
 
