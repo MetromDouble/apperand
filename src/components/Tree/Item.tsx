@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import { ItemWrapper } from 'src/components/Tree/ItemWrapper';
@@ -17,7 +17,6 @@ const TriangleArrow = styled(TriangleArrowComboIcon)<ITriangleArrow>`
 interface IItemProps {
   title: string;
   icons?: React.ReactNode;
-  expanded?: boolean;
   active?: boolean;
 }
 export const Item: React.FC<IItemProps> = (props) => {
@@ -26,10 +25,15 @@ export const Item: React.FC<IItemProps> = (props) => {
     title,
     icons,
     active,
-    expanded
   } = props;
+  const [expanded, setExpanded] = useState(false);
+  const toggleExpanded = (event: React.SyntheticEvent) => {
+    setExpanded(!expanded)
+    event.stopPropagation();
+  };
+
   return (
-    <ItemWrapper expanded={expanded}>
+    <ItemWrapper expanded={expanded} onClick={toggleExpanded}>
       <ItemHead active={active}>
         {!!children && <TriangleArrow expanded={expanded} size="xxs" type="s" />}
         {icons}

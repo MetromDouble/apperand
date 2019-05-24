@@ -4,6 +4,8 @@ interface IItemWrapper {
   expanded?: boolean;
 }
 export const ItemWrapper = styled.div<IItemWrapper>`
+  cursor: pointer;
+  user-select: none;
   padding-left: 12px;
   box-sizing: border-box;
   width: 100%;
