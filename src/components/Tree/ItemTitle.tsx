@@ -5,5 +5,5 @@ interface IItemTitle {
 export const ItemTitle = styled.span<IItemTitle>`
   font-size: 14px;
   line-height: 24px;
-  margin-left: 4px;
+  margin-left: 2px;
 `;

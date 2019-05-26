@@ -1,0 +1,19 @@
+{
+  "entry": "id1",
+  "nodes": {
+    "id1": {
+      "id": "id1",
+      "type": "TagIcon",
+      "meta": {},
+      "parent": "id1",
+      "subset": []
+    }
+  },
+  "rels": {
+    "id1": {
+      "id": "id1",
+      "in": "id1",
+      "out": "id1"
+    }
+  }
+}
