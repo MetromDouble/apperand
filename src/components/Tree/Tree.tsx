@@ -3,6 +3,7 @@ import React from 'react';
 import { TreeWrapper } from 'src/components/Tree/TreeWrapper';
 import { Item } from 'src/components/Tree/Item';
 import { TagComboIcon } from 'src/components/icons/TagComboIcon';
+import 'src/utils/TreeRuler';
 
 interface ITreeProps {
 }
