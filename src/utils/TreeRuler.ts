@@ -31,34 +31,36 @@ interface IRel {
 
 interface ITree {
   entry: string;
-  nodes: {
-    [index: string]: INode;
-  };
-  rels: {
-    [index: string]: IRel;
-  };
+  nodes: Map<string, INode>;
+  rels: Map<string, IRel>;
 }
 
 export class TreeRuler {
   public tree: ITree;
+  private _tree: ITree | null = null;
 
-  private _getNoCollisionId() {
-    let newId = createId();
+  constructor(source: any) {
+    const rootId = createId();
 
-    while (true) {
-      if (this.getNode(newId)) {
-        newId = createId();
-      } else {
-        return newId;
-      }
-    }
+    this.tree = {
+      entry: rootId,
+      nodes: new Map(),
+      rels: new Map(),
+    };
+
+    this.tree.nodes.set(rootId, {
+      id: rootId,
+      type: 'Root',
+      parent: null,
+      subset: [],
+    });
   }
 
   getNode(nodeId: string): INode | undefined {
-    return this.tree.nodes[nodeId];
+    return this.tree.nodes.get(nodeId);
   }
 
-  createNode(node: INodeArgs) {
+  insertNode(node: INodeArgs) {
     const newNode: INode = {
       id: this._getNoCollisionId(),
       type: node.type,
@@ -66,7 +68,7 @@ export class TreeRuler {
       subset: [],
     };
 
-    this.tree.nodes[newNode.id] = newNode;
+    this.tree.nodes.set(newNode.id, newNode);
 
     if (node.meta) {
       newNode.meta = node.meta;
@@ -199,21 +201,73 @@ export class TreeRuler {
   removeRel(relId: string) {
   }
 
-  constructor(source: any) {
-    const firstId = createId();
+  private _getNoCollisionId() {
+    let newId = createId();
 
-    this.tree = {
-      entry: firstId,
-      nodes: {
-        [firstId]: {
-          id: firstId,
-          type: 'Space',
-          parent: null,
-          subset: [],
-        }
-      },
-      rels: {}
-    };
+    while (true) {
+      if (this.getNode(newId)) {
+        newId = createId();
+      } else {
+        return newId;
+      }
+    }
+  }
+
+  private _startPatch() {
+    if (!this._tree) {
+      this._tree = {
+        entry: this.tree.entry,
+        nodes: new Map(this.tree.nodes),
+        rels: new Map(this.tree.rels),
+      };
+    }
+  }
+
+  private _applyPatch() {
+    if (this._tree) {
+      this.tree = this._tree;
+      this._tree = null;
+    }
+  }
+
+  private _rejectPatch() {
+    if (this._tree) {
+      this._tree = null;
+    }
+  }
+
+  private _updateParent(nodeId: string, parentNodeId: string) {
+    let newId = createId();
+
+    while (true) {
+      if (this.getNode(newId)) {
+        newId = createId();
+      } else {
+        return newId;
+      }
+    }
+  }
+
+  private _addSubsetItem(nodeId: string, subsetId: string) {
+    const node = this.getNode(nodeId);
+
+    if (!node) {
+      return console.error(new Error('Nonexistent node'));
+    }
+
+    if (!node.subset.every(item => item !== subsetId)) {
+      return console.error(new Error('Subset node already exist'));
+    }
+
+    if (node.subset && node.subset.length) {
+      const subsetNodes = node.subset.map(id => this.getNode(id));
+
+      if (!subsetNodes.every(item => !!item)) {
+        return console.error(new Error('Nonexistent subset nodes'));
+      } else {
+        (subsetNodes as INode[]).forEach(item => this.removeNode(item.id));
+      }
+    }
   }
 }
 
