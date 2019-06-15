@@ -92,7 +92,7 @@ export class TreeRuler {
       newNode.parent = node.parent;
     }
 
-    this.tree.nodes[newNode.id] = newNode;
+    this.tree.nodes.set(newNode.id, newNode);
   }
 
   updateNode(nodeId: string, nodeArgs: INodeArgs) {
@@ -144,7 +144,7 @@ export class TreeRuler {
       }
     }
 
-    this.tree.nodes[newNode.id] = newNode;
+    this.tree.nodes.set(newNode.id, newNode);
   }
 
   removeNode(nodeId: string) {
@@ -180,19 +180,19 @@ export class TreeRuler {
       }
     }
 
-    delete this.tree.nodes[node.id];
+    this.tree.nodes.delete(node.id);
   }
 
   findChildNodes(nodeId: string, type: string) {
-    return this.tree.nodes[nodeId];
+    return this.tree.nodes.get(nodeId);
   }
 
   getNodeInRels(nodeId: string) {
-    return this.tree.nodes[nodeId];
+    return this.tree.nodes.get(nodeId);
   }
 
   getNodeOutRels(nodeId: string) {
-    return this.tree.nodes[nodeId];
+    return this.tree.nodes.get(nodeId);
   }
 
   createRel(inNodeId: string, outNodeId: string,) {
