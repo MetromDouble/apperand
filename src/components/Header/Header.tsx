@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button } from 'src/components/Button/Button';
 
 import { STIOIcon } from 'src/components/icons/STIOIcon';
-import { PanelComboIcon } from 'src/components/icons/PanelComboIcon';
+import { PanelComboIcon } from 'src/components/comboicons/PanelComboIcon';
 
 const HeaderWrapper = styled.div`
   display: flex;

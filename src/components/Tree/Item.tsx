@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ItemWrapper } from 'src/components/Tree/ItemWrapper';
 import { ItemHead } from 'src/components/Tree/ItemHead';
 import { ItemTitle } from 'src/components/Tree/ItemTitle';
-import { TriangleArrowComboIcon } from 'src/components/icons/TriangleArrowComboIcon';
+import { TriangleArrowComboIcon } from 'src/components/comboicons/TriangleArrowComboIcon';
 
 interface ITriangleArrow {
   expanded?: boolean;

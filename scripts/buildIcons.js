@@ -24,7 +24,7 @@ export const ${filename.replace(/(\.svg)/gm, '') + 'Icon'}: React.FC<IIconProps>
     </Icon>
   );
 };
-`
+`;
   try {
     fs.readdirSync(outputPath)
   } catch (error) {
