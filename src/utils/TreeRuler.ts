@@ -1,58 +1,50 @@
-import generate from 'nanoid/generate';
+const createId = () => {
+  const min = 0;
+  const max = 0xffffffff + 1;
 
-const createId = () => generate('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890', 12);
-const isArraysEqual = (arr1: string[], arr2: string[]): boolean => {
-  if (arr1.length !== arr2.length) return false;
-  const sortedArr1 = arr1.sort();
-  const sortedArr2 = arr2.sort();
-  return sortedArr1.every((item, index) => item === sortedArr2[index]);
+  return Math.floor(Math.random() * (max - min) + min).toString(16);
 };
-
-interface INodeArgs {
-  type: string;
-  parent?: string;
-  subset?: string[];
-  meta?: any;
-}
 
 interface INode {
   id: string;
   type: string;
-  parent: string | null;
-  subset: string[];
-  meta?: any;
+  meta?: unknown;
 }
 
-interface IRel {
-  id: string;
-  in: string;
-  out: string;
+interface IRelInner {
+  ctx: Set<string>;
+  ins: Set<string>;
+}
+
+interface IRelStorage {
+  forward: Map<string, IRelInner>;
+  backward: Map<string, IRelInner>;
 }
 
 interface ITree {
-  entry: string;
+  entry?: string;
   nodes: Map<string, INode>;
-  rels: Map<string, IRel>;
+  rels: IRelStorage;
 }
 
 export class TreeRuler {
   public tree: ITree;
-  private _tree: ITree | null = null;
 
-  constructor(source: any) {
+  constructor(source?: ITree) {
     const rootId = createId();
 
     this.tree = {
       entry: rootId,
       nodes: new Map(),
-      rels: new Map(),
+      rels: {
+        forward: new Map(),
+        backward: new Map(),
+      },
     };
 
     this.tree.nodes.set(rootId, {
       id: rootId,
-      type: 'Root',
-      parent: null,
-      subset: [],
+      type: rootId,
     });
   }
 
@@ -60,42 +52,22 @@ export class TreeRuler {
     return this.tree.nodes.get(nodeId);
   }
 
-  insertNode(node: INodeArgs) {
+  createNode(type: string, meta?: unknown) {
     const newNode: INode = {
       id: this._getNoCollisionId(),
-      type: node.type,
-      parent: null,
-      subset: [],
+      type,
     };
 
-    this.tree.nodes.set(newNode.id, newNode);
-
-    if (node.meta) {
-      newNode.meta = node.meta;
-    }
-
-    if (node.parent) {
-      const parentNode = this.getNode(node.parent);
-
-      if (!parentNode) {
-        return console.error(new Error('Nonexistent parent node'));
-      } else {
-        this.updateNode(parentNode.id, {
-          type: parentNode.type,
-          subset: [
-            ...parentNode.subset,
-            newNode.id
-          ],
-        });
-      }
-
-      newNode.parent = node.parent;
+    if (meta) {
+      newNode.meta = meta;
     }
 
     this.tree.nodes.set(newNode.id, newNode);
+
+    return this.getNode(newNode.id);
   }
 
-  updateNode(nodeId: string, nodeArgs: INodeArgs) {
+  updateNode(nodeId: string, type: string, meta?: unknown) {
     const node = this.getNode(nodeId);
 
     if (!node) {
@@ -103,102 +75,89 @@ export class TreeRuler {
     }
 
     const newNode: INode = {
-      id: node.id,
-      type: nodeArgs.type,
-      parent: node.parent,
-      subset: node.subset,
+      id: nodeId,
+      type,
     };
 
-    if (nodeArgs.meta) {
-      newNode.meta = {
-        ...node.meta,
-        ...nodeArgs.meta,
-      };
-    }
-
-    if (nodeArgs.parent && nodeArgs.parent !== node.parent) {
-      const parentNode = this.getNode(nodeArgs.parent);
-
-      if (!parentNode) {
-        return console.error(new Error('Nonexistent parent node'));
-      } else {
-        this.updateNode(parentNode.id, {
-          type: parentNode.type,
-          subset: [
-            ...parentNode.subset,
-            newNode.id,
-          ],
-        });
-      }
-    }
-
-    if (nodeArgs.subset && nodeArgs.subset.length) {
-      const subsetNodes = nodeArgs.subset.map(id => this.getNode(id));
-
-      if (!subsetNodes.every(item => !!item)) {
-        return console.error(new Error('Nonexistent subset nodes'));
-      } else if (!isArraysEqual(node.subset, nodeArgs.subset)) {
-        (subsetNodes as INode[]).forEach(item => this.updateNode(item.id, { type: item.type, parent: newNode.id }));
-
-        newNode.subset = [...nodeArgs.subset];
-      }
+    if (meta) {
+      newNode.meta = meta;
     }
 
     this.tree.nodes.set(newNode.id, newNode);
+
+    return this.getNode(newNode.id);
   }
 
   removeNode(nodeId: string) {
     const node = this.getNode(nodeId);
 
     if (!node) {
-      return console.error(new Error('Nonexistent node'));
+      return false;
     }
 
-    if (node.parent) {
-      const parentNode = this.getNode(node.parent);
-
-      if (!parentNode) {
-        return console.error(new Error('Nonexistent parent node'));
-      } else {
-        this.updateNode(parentNode.id, {
-          type: parentNode.type,
-          subset: [
-            ...parentNode.subset.filter(id => nodeId !== id),
-          ],
-        });
-      }
-    }
-
-
-    if (node.subset && node.subset.length) {
-      const subsetNodes = node.subset.map(id => this.getNode(id));
-
-      if (!subsetNodes.every(item => !!item)) {
-        return console.error(new Error('Nonexistent subset nodes'));
-      } else {
-        (subsetNodes as INode[]).forEach(item => this.removeNode(item.id));
-      }
-    }
+    this.removeAllRels(nodeId);
 
     this.tree.nodes.delete(node.id);
+
+    return true;
   }
 
-  findChildNodes(nodeId: string, type: string) {
-    return this.tree.nodes.get(nodeId);
+  getRels(
+    nodeId: string,
+    direction: 'in' | 'out' = 'in',
+    relType: 'ctx' | 'ins' = 'ctx'
+  ): string[] {
+    if (direction === 'in') {
+      if (this.tree.rels.forward.has(nodeId)) {
+        return Array.from((this.tree.rels.forward.get(nodeId) as IRelInner)[relType]);
+      }
+    } else {
+      if (this.tree.rels.backward.has(nodeId)) {
+        return Array.from((this.tree.rels.backward.get(nodeId) as IRelInner)[relType]);
+      }
+    }
+    return [];
   }
 
-  getNodeInRels(nodeId: string) {
-    return this.tree.nodes.get(nodeId);
+  createRel(relType: 'ctx' | 'ins', nodeAId: string, nodeBId: string) {
+    if (!this.tree.rels.forward.has(nodeAId)) {
+      this.tree.rels.forward.set(nodeAId, {
+        ctx: new Set(),
+        ins: new Set(),
+      });
+    }
+    (this.tree.rels.forward.get(nodeAId) as IRelInner)[relType].add(nodeBId);
+
+    if (!this.tree.rels.backward.has(nodeBId)) {
+      this.tree.rels.backward.set(nodeBId, {
+        ctx: new Set(),
+        ins: new Set(),
+      });
+    }
+    (this.tree.rels.backward.get(nodeBId) as IRelInner)[relType].add(nodeAId);
   }
 
-  getNodeOutRels(nodeId: string) {
-    return this.tree.nodes.get(nodeId);
+  removeRel(relType: 'ctx' | 'ins', nodeAId: string, nodeBId?: string) {
+    if (this.tree.rels.forward.has(nodeAId)) {
+      if (nodeBId) {
+        (this.tree.rels.forward.get(nodeAId) as IRelInner)[relType].delete(nodeBId);
+        if (this.tree.rels.backward.has(nodeBId)) {
+          (this.tree.rels.backward.get(nodeBId) as IRelInner)[relType].delete(nodeAId);
+        }
+      } else {
+        (this.tree.rels.forward.get(nodeAId) as IRelInner)[relType].forEach(backwardRelId => {
+          if (this.tree.rels.backward.has(backwardRelId)) {
+            (this.tree.rels.backward.get(backwardRelId) as IRelInner)[relType].delete(nodeAId);
+          }
+        });
+      }
+      this.tree.rels.forward.delete(nodeAId);
+    }
   }
 
-  createRel(inNodeId: string, outNodeId: string,) {
-  }
-
-  removeRel(relId: string) {
+  removeAllRels(nodeId: string) {
+    this.removeRel('ctx', nodeId);
+    this.removeRel('ins', nodeId);
   }
 
   private _getNoCollisionId() {
@@ -212,63 +171,6 @@ export class TreeRuler {
       }
     }
   }
-
-  private _startPatch() {
-    if (!this._tree) {
-      this._tree = {
-        entry: this.tree.entry,
-        nodes: new Map(this.tree.nodes),
-        rels: new Map(this.tree.rels),
-      };
-    }
-  }
-
-  private _applyPatch() {
-    if (this._tree) {
-      this.tree = this._tree;
-      this._tree = null;
-    }
-  }
-
-  private _rejectPatch() {
-    if (this._tree) {
-      this._tree = null;
-    }
-  }
-
-  private _updateParent(nodeId: string, parentNodeId: string) {
-    let newId = createId();
-
-    while (true) {
-      if (this.getNode(newId)) {
-        newId = createId();
-      } else {
-        return newId;
-      }
-    }
-  }
-
-  private _addSubsetItem(nodeId: string, subsetId: string) {
-    const node = this.getNode(nodeId);
-
-    if (!node) {
-      return console.error(new Error('Nonexistent node'));
-    }
-
-    if (!node.subset.every(item => item !== subsetId)) {
-      return console.error(new Error('Subset node already exist'));
-    }
-
-    if (node.subset && node.subset.length) {
-      const subsetNodes = node.subset.map(id => this.getNode(id));
-
-      if (!subsetNodes.every(item => !!item)) {
-        return console.error(new Error('Nonexistent subset nodes'));
-      } else {
-        (subsetNodes as INode[]).forEach(item => this.removeNode(item.id));
-      }
-    }
-  }
 }
 
-if (typeof window !== 'undefined') (window as any).EEEEE = new TreeRuler(1);
+if (typeof window !== 'undefined') (window as any).EEEEE = new TreeRuler();
