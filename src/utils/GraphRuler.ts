@@ -27,7 +27,7 @@ interface ITree {
   rels: IRelStorage;
 }
 
-export class TreeRuler {
+export class GraphRuler {
   public tree: ITree;
 
   constructor(source?: ITree) {
@@ -173,4 +173,4 @@ export class TreeRuler {
   }
 }
 
-if (typeof window !== 'undefined') (window as any).EEEEE = new TreeRuler();
+if (typeof window !== 'undefined') (window as any).EEEEE = new GraphRuler();
