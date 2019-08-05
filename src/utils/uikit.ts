@@ -25,18 +25,14 @@ type ButtonTypesIndex = {
 }
 
 export type ButtonSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'wide';
-type ButtonSizesIndex = {
-  [index in ButtonSizes]: {
-    height: string;
-    paddingHorizontal: string;
-    fontSize: string;
-  }
-}
+type ButtonSizesIndex = Record<ButtonSizes, {
+  height: string;
+  paddingHorizontal: string;
+  fontSize: string;
+}>;
 
 export type IconSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl';
-type IconSizesIndex = {
-  [index in IconSizes]: number;
-}
+type IconSizesIndex = Record<IconSizes, number>;
 
 export type Directions = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw' | 'ns' | 'ew' | 'nesw' | 'nwse';
 
@@ -61,6 +57,52 @@ export const palette = {
   warning: '#ffda15',
   warningWeak: '#ffe664',
   warningStrong: '#ecc600',
+};
+
+export const newPalette = {
+  maxLight: '#ffffff',
+  minLight: '#000000',
+
+  gs90: '#1A1A1A',
+  gs80: '#333333',
+  gs70: '#4D4D4D',
+  gs60: '#666666',
+  gs50: '#808080',
+  gs40: '#999999',
+  gs30: '#B2B2B2',
+  gs20: '#CCCCCC',
+  gs10: '#E5E5E5',
+  gs05: '#F2F2F2',
+
+  primary: '#0B61A4',
+  primaryDark: '#25567B',
+  primaryDarkest: '#033E6B',
+  primaryLight: '#3F92D2',
+  primaryLightest: '#66A3D2',
+
+  success: '#1DD300',
+  successDark: '#389E28',
+  successDarkest: '#138900',
+  successLight: '#52E93A',
+  successLightest: '#7AE969',
+
+  warning: '#FF9F00',
+  warningDark: '#BF8930',
+  warningDarkest: '#A66800',
+  warningLight: '#FFB740',
+  warningLightest: '#FFCA73',
+
+  danger: '#FF1E00',
+  dangerDark: '#BF4030',
+  dangerDarkest: '#A61300',
+  dangerLight: '#FF5640',
+  dangerLightest: '#FF8373',
+
+  brand: '#00A287',
+  brandDark: '#1E796A',
+  brandDarkest: '#006957',
+  brandLight: '#34D0B6',
+  brandLightest: '#5ED0BD',
 };
 
 export const sizeMap: ButtonSizesIndex = {
@@ -113,112 +155,112 @@ export const iconWidthMap: IconSizesIndex = {
 export const btnColorMap: ButtonTypesIndex = {
   default: {
     default: {
-      color: palette.asphalt,
-      background: palette.wetPaper,
-      border: palette.steel,
+      color: newPalette.gs70,
+      background: newPalette.gs10,
+      border: newPalette.gs20,
     },
     hover: {
-      color: palette.wetAsphalt,
-      background: palette.wetPaper,
-      border: palette.steel,
+      color: newPalette.gs80,
+      background: newPalette.gs10,
+      border: newPalette.gs30,
     },
     active: {
-      color: palette.wetAsphalt,
-      background: palette.steel,
-      border: palette.iron,
+      color: newPalette.gs80,
+      background: newPalette.gs20,
+      border: newPalette.gs30,
     },
     disabled: {
-      color: palette.iron,
-      background: palette.wetPaper,
-      border: palette.wetPaper,
+      color: newPalette.gs20,
+      background: newPalette.gs10,
+      border: newPalette.gs10,
     },
   },
   primary: {
     default: {
-      color: palette.maxLight,
-      background: palette.primaryStrong,
-      border: palette.primaryStrong,
+      color: newPalette.maxLight,
+      background: newPalette.primary,
+      border: newPalette.primary,
     },
     hover: {
-      color: palette.maxLight,
-      background: palette.primary,
-      border: palette.primary,
+      color: newPalette.maxLight,
+      background: newPalette.primaryLight,
+      border: newPalette.primary,
     },
     active: {
-      color: palette.maxLight,
-      background: palette.primaryWeak,
-      border: palette.primary,
+      color: newPalette.maxLight,
+      background: newPalette.primary,
+      border: newPalette.primaryDark,
     },
     disabled: {
-      color: palette.iron,
-      background: palette.primaryWeak,
-      border: palette.primaryWeak,
+      color: newPalette.gs20,
+      background: newPalette.primaryLightest,
+      border: newPalette.primaryLightest,
     },
   },
   success: {
     default: {
-      color: palette.maxLight,
-      background: palette.successStrong,
-      border: palette.successStrong,
+      color: newPalette.maxLight,
+      background: newPalette.success,
+      border: newPalette.success,
     },
     hover: {
-      color: palette.maxLight,
-      background: palette.success,
-      border: palette.success,
+      color: newPalette.maxLight,
+      background: newPalette.successLight,
+      border: newPalette.success,
     },
     active: {
-      color: palette.maxLight,
-      background: palette.successWeak,
-      border: palette.success,
+      color: newPalette.maxLight,
+      background: newPalette.success,
+      border: newPalette.successDark,
     },
     disabled: {
-      color: palette.iron,
-      background: palette.successWeak,
-      border: palette.successWeak,
+      color: newPalette.gs30,
+      background: newPalette.successLightest,
+      border: newPalette.successLightest,
     },
   },
   warning: {
     default: {
-      color: palette.maxLight,
-      background: palette.warningStrong,
-      border: palette.warningStrong,
+      color: newPalette.maxLight,
+      background: newPalette.warning,
+      border: newPalette.warning,
     },
     hover: {
-      color: palette.maxLight,
-      background: palette.warning,
-      border: palette.warning,
+      color: newPalette.maxLight,
+      background: newPalette.warningLight,
+      border: newPalette.warning,
     },
     active: {
-      color: palette.maxLight,
-      background: palette.warningWeak,
-      border: palette.warning,
+      color: newPalette.maxLight,
+      background: newPalette.warning,
+      border: newPalette.warningDark,
     },
     disabled: {
-      color: palette.iron,
-      background: palette.warningWeak,
-      border: palette.warningWeak,
+      color: newPalette.gs30,
+      background: newPalette.warningLightest,
+      border: newPalette.warningLightest,
     },
   },
   danger: {
     default: {
-      color: palette.maxLight,
-      background: palette.dangerStrong,
-      border: palette.dangerStrong,
+      color: newPalette.maxLight,
+      background: newPalette.danger,
+      border: newPalette.danger,
     },
     hover: {
-      color: palette.maxLight,
-      background: palette.danger,
-      border: palette.danger,
+      color: newPalette.maxLight,
+      background: newPalette.dangerLight,
+      border: newPalette.danger,
     },
     active: {
-      color: palette.maxLight,
-      background: palette.dangerWeak,
-      border: palette.danger,
+      color: newPalette.maxLight,
+      background: newPalette.danger,
+      border: newPalette.dangerDark,
     },
     disabled: {
-      color: palette.steel,
-      background: palette.dangerWeak,
-      border: palette.dangerWeak,
+      color: newPalette.gs20,
+      background: newPalette.dangerLightest,
+      border: newPalette.dangerLightest,
     },
   },
   clean: {
