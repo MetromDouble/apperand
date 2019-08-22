@@ -24,10 +24,14 @@ type ButtonTypesIndex = {
   }
 }
 
-export type ButtonSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'wide';
-type ButtonSizesIndex = Record<ButtonSizes, {
+export type Sizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'wide';
+type ButtonSizesIndex = Record<Sizes, {
   height: string;
   paddingHorizontal: string;
+  fontSize: string;
+}>;
+type InputSizesIndex = Record<Sizes, {
+  height: string;
   fontSize: string;
 }>;
 
@@ -105,7 +109,7 @@ export const newPalette = {
   brandLightest: '#5ED0BD',
 };
 
-export const sizeMap: ButtonSizesIndex = {
+export const buttonSizeMap: ButtonSizesIndex = {
   xxs: {
     height: '20px',
     paddingHorizontal: '4px',
@@ -139,6 +143,37 @@ export const sizeMap: ButtonSizesIndex = {
   wide: {
     height: '100%',
     paddingHorizontal: '0',
+    fontSize: '16px',
+  },
+};
+
+export const inputSizeMap: InputSizesIndex = {
+  xxs: {
+    height: '20px',
+    fontSize: '12px',
+  },
+  xs: {
+    height: '24px',
+    fontSize: '14px',
+  },
+  s: {
+    height: '32px',
+    fontSize: '14px',
+  },
+  m: {
+    height: '40px',
+    fontSize: '16px',
+  },
+  l: {
+    height: '48px',
+    fontSize: '18px',
+  },
+  xl: {
+    height: '56px',
+    fontSize: '24px',
+  },
+  wide: {
+    height: '100%',
     fontSize: '16px',
   },
 };

@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import {
   ButtonTypes,
-  ButtonSizes,
+  Sizes,
   btnColorMap,
-  sizeMap
+  buttonSizeMap
 } from 'src/utils/uikit';
 
 interface IButtonProps {
   type?: ButtonTypes;
-  size?: ButtonSizes;
+  size?: Sizes;
 }
 
 export const Button = styled.button<IButtonProps>`
@@ -18,37 +18,37 @@ export const Button = styled.button<IButtonProps>`
   display: inline-block;
   outline: none;
   padding: 0 ${props => {
-    const sizeObject = props.size && sizeMap[props.size];
+    const sizeObject = props.size && buttonSizeMap[props.size];
 
     return sizeObject
       ? sizeObject.paddingHorizontal
-      : sizeMap.m.paddingHorizontal
+      : buttonSizeMap.m.paddingHorizontal
   }};
   font: inherit;
   font-size: ${props => {
-    const sizeObject = props.size && sizeMap[props.size];
+    const sizeObject = props.size && buttonSizeMap[props.size];
 
     return sizeObject
       ? sizeObject.fontSize
-      : sizeMap.m.fontSize
+      : buttonSizeMap.m.fontSize
   }};
   line-height: ${props => {
-    const sizeObject = props.size && sizeMap[props.size];
+    const sizeObject = props.size && buttonSizeMap[props.size];
 
     return sizeObject
       ? sizeObject.fontSize
-      : sizeMap.m.fontSize
+      : buttonSizeMap.m.fontSize
   }};
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
   transition: color .1s ease-out, background-color .1s ease-out, border-color .1s ease-out, transform .1s ease-out;
   height: ${props => {
-    const sizeObject = props.size && sizeMap[props.size];
+    const sizeObject = props.size && buttonSizeMap[props.size];
 
     return sizeObject
       ? sizeObject.height
-      : sizeMap.m.height
+      : buttonSizeMap.m.height
   }};
   color: ${props => {
     const subMap = props.type && btnColorMap[props.type];

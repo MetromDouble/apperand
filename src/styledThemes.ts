@@ -1,6 +1,9 @@
 import { DefaultTheme } from 'styled-components';
-import { palette } from './utils/uikit';
+import { palette, newPalette} from './utils/uikit';
 
 export const theme: DefaultTheme = {
-  palette
+  palette: {
+    ...palette,
+    ...newPalette
+  }
 };
