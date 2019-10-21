@@ -11,7 +11,7 @@ export const ItemWrapper = styled.div<IItemWrapper>`
   width: 100%;
   height: ${props => props.expanded ? 'auto' : '24px'};
   overflow: hidden;
-  background: ${props => props.theme.palette.steel};
+  background: ${props => props.theme.palette.gs20};
   position: relative;
   &::after {
     content: '';
@@ -21,11 +21,11 @@ export const ItemWrapper = styled.div<IItemWrapper>`
     position: absolute;
     top: 24px;
     left: 9px;
-    background: ${props => props.theme.palette.iron};
+    background: ${props => props.theme.palette.gs30};
     transition: background 0.1s ease;
     opacity: 0.3;
   }
   &:hover::after {
-    background: ${props => props.theme.palette.asphalt};
+    background: ${props => props.theme.palette.gs70};
   }
 `;

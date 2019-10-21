@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconSizes } from 'src/utils/uikit';
+import { Sizes } from 'src/common/types/Sizes';
 import { AccountIcon } from 'src/components/icons/AccountIcon';
 import { AlarmIcon } from 'src/components/icons/AlarmIcon';
 import { AliasIcon } from 'src/components/icons/AliasIcon';
@@ -259,7 +259,7 @@ import { ZoomOutIcon } from 'src/components/icons/ZoomOutIcon';
 export const IconsExpo: React.FC = () => {
   return (
     <>
-      {(['xxs', 'xs', 's', 'm', 'l', 'xl'] as IconSizes[]).map((size) => (
+      {(['xxs', 'xs', 's', 'm', 'l', 'xl'] as Sizes[]).map((size) => (
         <>
           <br />
           <AccountIcon size={size} />

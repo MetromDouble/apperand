@@ -8,9 +8,9 @@ export const ItemHead = styled.div<IItemHead>`
   margin-left: -10px;
   padding-left: 2px;
   padding-right: 4px;
-  background: ${props => props.active ? props.theme.palette.iron : 'transparent'};
+  background: ${props => props.active ? props.theme.palette.gs30 : 'transparent'};
   transition: background 0.1s ease;
   &:hover {
-    background: ${props => props.theme.palette.iron};
+    background: ${props => props.theme.palette.gs30};
   }
 `;

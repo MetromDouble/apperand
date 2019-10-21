@@ -9,9 +9,9 @@ const SettingsWrapper = styled.div`
   align-content: start;
   height: 100%;
   width: 100%;
-  background: ${props => props.theme.palette.wetPaper};
+  background: ${props => props.theme.palette.gs10};
   box-sizing: border-box;
-  border-left: 1px solid ${props => props.theme.palette.steel};
+  border-left: 1px solid ${props => props.theme.palette.gs20};
 `;
 
 export const Settings = () => {

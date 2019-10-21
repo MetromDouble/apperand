@@ -10,7 +10,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-  background: ${props => props.theme.palette.wetAsphalt};
+  background: ${props => props.theme.palette.gs80};
 `;
 
 const HeaderButton = styled(Button)`
@@ -25,8 +25,8 @@ const HeaderButton = styled(Button)`
     border-color: ${props => props.theme.palette.minLight};
   }
   &:active {
-    background: ${props => props.theme.palette.primaryStrong};
-    border-color: ${props => props.theme.palette.primaryStrong};
+    background: ${props => props.theme.palette.primaryDark};
+    border-color: ${props => props.theme.palette.primaryDark};
   }
 `;
 
@@ -37,11 +37,11 @@ const HeaderCenterSection = styled.div`
   align-items: center;
   height: 40px;
   width: 100%;
-  background: ${props => props.theme.palette.wetAsphalt};
+  background: ${props => props.theme.palette.gs80};
 `;
 
 const ProjectTitlePrefix = styled.span`
-  color: ${props => props.theme.palette.iron};
+  color: ${props => props.theme.palette.gs30};
 `;
 
 const ProjectTitle = styled.span`

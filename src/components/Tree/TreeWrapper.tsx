@@ -5,6 +5,6 @@ export const TreeWrapper = styled.div`
   height: 100%;
   padding: 4px;
   box-sizing: border-box;
-  background: ${props => props.theme.palette.steel};
-  color: ${props => props.theme.palette.asphalt};
+  background: ${props => props.theme.palette.gs20};
+  color: ${props => props.theme.palette.gs70};
 `;

@@ -7,7 +7,7 @@ const nameArray = fs.readdirSync(inputPath);
 
 const result = `import React from 'react';
 
-import { IconSizes } from 'src/utils/uikit';
+import { Sizes } from 'src/common/types/Sizes';
 ${
   nameArray.map((filename) => {
     const componentName = filename.replace(/(\.tsx)/gm, '');
@@ -19,7 +19,7 @@ ${
 export const IconsExpo: React.FC = () => {
   return (
     <>
-      {(['xxs', 'xs', 's', 'm', 'l', 'xl'] as IconSizes[]).map((size) => (
+      {(['xxs', 'xs', 's', 'm', 'l', 'xl'] as Sizes[]).map((size) => (
         <>
 ${
   nameArray.map((filename, index) => {

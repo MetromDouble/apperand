@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './styledThemes';
+import { ThemeProvider, DefaultTheme } from 'styled-components';
 // import * as monaco from 'monaco-editor';
 import configureStore from './redux/configureStore';
 import { Root } from './Root';
 import * as serviceWorker from './serviceWorker';
+import { palette } from 'src/common/theme';
 
 import './assets/styles/index.css';
+
+const theme: DefaultTheme = {
+  palette
+};
 
 const history = createBrowserHistory();
 const store = configureStore(history, {});

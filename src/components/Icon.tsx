@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { iconWidthMap, IconSizes } from 'src/utils/uikit'
+import { Sizes } from 'src/common/types/Sizes';
+import { iconSizeMap } from 'src/common/theme';
 
 export interface IIconProps {
-  size?: IconSizes;
+  size?: Sizes;
   fill?: string;
   onlyPath?: boolean;
   className?: string;
@@ -14,8 +15,8 @@ export interface IComboIconProps<T> extends IIconProps {
 const IconWrapper = styled.i<IIconProps>`
   display: inline-flex;
   align-items: center;
-  width: ${props => `${props.size && iconWidthMap[props.size] ? iconWidthMap[props.size] : iconWidthMap.m}px`};
-  height: ${props => `${props.size && iconWidthMap[props.size] ? iconWidthMap[props.size] : iconWidthMap.m}px`};
+  width: ${props => `${props.size && iconSizeMap[props.size] ? iconSizeMap[props.size] : iconSizeMap.m}px`};
+  height: ${props => `${props.size && iconSizeMap[props.size] ? iconSizeMap[props.size] : iconSizeMap.m}px`};
   svg {
     width: 100%;
     height: 100%;

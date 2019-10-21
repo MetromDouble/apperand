@@ -15,17 +15,11 @@ export const Icons: React.FC = () => {
       <Button type="danger" size="xl" />
       <Button type="clean" />
       <br/>
-      <Input size="xxs" />
-      <br/>
-      <Input size="xs" />
-      <br/>
-      <Input size="s" />
-      <br/>
-      <Input size="m" />
-      <br/>
-      <Input size="l" />
-      <br/>
-      <Input size="xl" />
+      <Input type="checkbox" />
+      <Input type="radio" />
+      <Input type="text" />
+      <Input type="password" />
+      <Input type="hidden" />
       <br/>
       <IconsExpo />
     </>

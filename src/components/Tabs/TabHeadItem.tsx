@@ -9,6 +9,6 @@ export const TabHeadItem = styled.div<ITabHeadItem>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.active ? props.theme.palette.wetPaper : props.theme.palette.steel};
-  color: ${props => props.theme.palette.asphalt};
+  background: ${props => props.active ? props.theme.palette.gs10 : props.theme.palette.gs20};
+  color: ${props => props.theme.palette.gs70};
 `;

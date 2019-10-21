@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 
-import {
-  ButtonTypes,
-  Sizes,
-  btnColorMap,
-  buttonSizeMap
-} from 'src/utils/uikit';
+import { Sizes } from 'src/common/types/Sizes';
+import { InteractiveContextTypes } from 'src/common/types/InteractiveContextTypes';
+import { buttonSizeMap, buttonColorMap } from 'src/common/theme';
 
 interface IButtonProps {
-  type?: ButtonTypes;
+  type?: InteractiveContextTypes;
   size?: Sizes;
 }
 
@@ -51,21 +48,21 @@ export const Button = styled.button<IButtonProps>`
       : buttonSizeMap.m.height
   }};
   color: ${props => {
-    const subMap = props.type && btnColorMap[props.type];
+    const subMap = props.type && buttonColorMap[props.type];
 
     return subMap
       ? subMap.default.color
       : ''
   }};
   background-color: ${props => {
-    const subMap = props.type && btnColorMap[props.type];
+    const subMap = props.type && buttonColorMap[props.type];
 
     return subMap
       ? subMap.default.background
       : 'transparent'
   }};
   border-color: ${props => {
-    const subMap = props.type && btnColorMap[props.type];
+    const subMap = props.type && buttonColorMap[props.type];
 
     return subMap
       ? subMap.default.border
@@ -74,21 +71,21 @@ export const Button = styled.button<IButtonProps>`
 
   &:focus, &:hover {
     color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.hover.color
         : ''
     }};
     background-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.hover.background
         : 'transparent'
     }};
     border-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.hover.border
@@ -98,21 +95,21 @@ export const Button = styled.button<IButtonProps>`
 
   &:active {
     color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.active.color
         : ''
     }};
     background-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.active.background
         : 'transparent'
     }};
     border-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.active.border
@@ -122,21 +119,21 @@ export const Button = styled.button<IButtonProps>`
 
   &:disabled {
     color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.disabled.color
         : ''
     }};
     background-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.disabled.background
         : 'transparent'
     }};
     border-color: ${props => {
-      const subMap = props.type && btnColorMap[props.type];
+      const subMap = props.type && buttonColorMap[props.type];
 
       return subMap
         ? subMap.disabled.border

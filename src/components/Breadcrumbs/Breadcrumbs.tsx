@@ -8,9 +8,9 @@ import { FolderIcon } from 'src/components/icons/FolderIcon';
 const BreadcrumbsWrapper = styled.div`
   display: flex;
   height: 100%;
-  background: ${props => props.theme.palette.wetPaper};
+  background: ${props => props.theme.palette.gs10};
   box-sizing: border-box;
-  border-top: 1px solid ${props => props.theme.palette.steel};
+  border-top: 1px solid ${props => props.theme.palette.gs20};
   padding-top: 3px;
 `;
 

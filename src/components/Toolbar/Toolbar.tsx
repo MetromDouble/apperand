@@ -15,7 +15,7 @@ const ToolbarWrapper = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: ${props => props.theme.palette.asphalt};
+  background: ${props => props.theme.palette.gs70};
 `;
 
 const ToolbarTopSection = styled.div`
@@ -38,12 +38,12 @@ const ToolbarButton = styled(Button)`
   height: 40px;
   color: ${props => props.theme.palette.maxLight};
   &:hover {
-    background: ${props => props.theme.palette.minLight};
-    border-color: ${props => props.theme.palette.minLight};
+    background: ${props => props.theme.palette.gs80};
+    border-color: ${props => props.theme.palette.gs80};
   }
   &:active {
-    background: ${props => props.theme.palette.primaryStrong};
-    border-color: ${props => props.theme.palette.primaryStrong};
+    background: ${props => props.theme.palette.gs90};
+    border-color: ${props => props.theme.palette.gs90};
   }
 `;
 
