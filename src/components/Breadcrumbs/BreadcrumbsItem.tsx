@@ -61,11 +61,11 @@ export const BreadcrumbsItem: React.FC<IBreadcrumbsItemProps> = ({ active, child
   return (
     <BreadcrumbsItemWrapper className={cn({active})}>
       <svg viewBox="0 0 11 32" width="11" height="32" className="tail">
-        <path d="M0 0h-1v32h1l9-16L0 0z" fill={theme.palette.gs10} />
+        <path d="M0 0h-1v32h1l9-16L0 0z" fill={theme.palette.gs05} />
       </svg>
       {children}
       <svg viewBox="0 0 11 32" width="11" height="32" className="head">
-        <path d="M0 0v-1h12v34H0v-1l9-16L0 0z" fill={theme.palette.gs10} />
+        <path d="M0 0v-1h12v34H0v-1l9-16L0 0z" fill={theme.palette.gs05} />
       </svg>
     </BreadcrumbsItemWrapper>
   );
