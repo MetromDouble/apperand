@@ -90,30 +90,37 @@ export const inputSizeMap: Record<Sizes, Record<string, string>> = {
   xxs: {
     height: '20px',
     fontSize: '12px',
+    inputMargin: '4px',
   },
   xs: {
     height: '24px',
     fontSize: '14px',
+    inputMargin: '4px',
   },
   s: {
     height: '32px',
     fontSize: '14px',
+    inputMargin: '4px',
   },
   m: {
     height: '40px',
     fontSize: '16px',
+    inputMargin: '4px',
   },
   l: {
     height: '48px',
     fontSize: '18px',
+    inputMargin: '8px',
   },
   xl: {
     height: '56px',
     fontSize: '24px',
+    inputMargin: '8px',
   },
   xxl: {
     height: '64px',
     fontSize: '24px',
+    inputMargin: '8px',
   },
 };
 

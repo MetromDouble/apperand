@@ -15,11 +15,43 @@ export const Icons: React.FC = () => {
       <Button type="danger" size="xl" />
       <Button type="clean" />
       <br/>
-      <Input type="checkbox" />
-      <Input type="radio" />
-      <Input type="text" />
+      <Input type="checkbox" size="xxs">
+        Label
+      </Input>
+      <Input type="checkbox" size="xs">
+        Label
+      </Input>
+      <Input type="checkbox" size="s">
+        Label
+      </Input>
+      <Input type="checkbox" size="m">
+        Label
+      </Input>
+      <Input type="checkbox" size="l">
+        Label
+      </Input>
+      <Input type="checkbox" size="xl">
+        Label
+      </Input>
+      <Input type="checkbox" size="xxl">
+        Label
+      </Input>
+
+      <Input type="radio" size="xxs" />
+      <Input type="radio" size="xs" />
+      <Input type="radio" size="s" />
+      <Input type="radio" size="m" />
+      <Input type="radio" size="l" />
+      <Input type="radio" size="xl" />
+
+      <Input type="text" size="xxs" />
+      <Input type="text" size="xs" />
+      <Input type="text" size="s" />
+      <Input type="text" size="m" />
+      <Input type="text" size="l" />
+      <Input type="text" size="xl" />
       <Input type="password" />
-      <Input type="hidden" />
+      <Input type="number" />
       <br/>
       <IconsExpo />
     </>
