@@ -6,7 +6,7 @@ import { TreeIcon } from 'src/components/icons/TreeIcon';
 import { SettingsIcon } from 'src/components/icons/SettingsIcon';
 
 import { Tree } from 'src/components/Tree/Tree';
-import { Expander } from 'src/components/Expander/Expander';
+import { StyleTab } from 'src/components/Settings/StyleTab';
 
 import { Tabs, TabHead, TabBody } from 'src/components/Tabs/Tabs';
 
@@ -14,15 +14,6 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   padding: 8px;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-`;
-
-const SpaceWrapper = styled.div`
-  display: flex;
-  flex-grow: 1;
-  padding: 8px 0;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -41,11 +32,7 @@ export const Tabsy: React.FC = () => {
         <SettingsIcon size="s" />
       </TabHead>
       <TabBody id="style">
-        <SpaceWrapper>
-          <Expander title="Spacing">
-            <Tree />
-          </Expander>
-        </SpaceWrapper>
+        <StyleTab />
       </TabBody>
       <TabBody id="tree">
         <ContentWrapper>

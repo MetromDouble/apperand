@@ -10,7 +10,7 @@ import { Breadcrumbs } from 'src/components/Breadcrumbs/Breadcrumbs';
 
 export const Main = () => {
   return (
-    <GridContainer columns={['40px', 'auto', '240px']} rows={['40px', 'auto', '40px']}>
+    <GridContainer columns={['40px', '1fr', '240px']} rows={['40px', '1fr', '40px']}>
       <GridArea area={['1', '1', '2', '4']}>
         <Header />
       </GridArea>
