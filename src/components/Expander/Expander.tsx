@@ -62,4 +62,5 @@ interface IHideableProps {
 }
 const Hideable = styled.div<IHideableProps>`
   display: ${props => props.visible ? 'block' : 'none'};
+  padding: 8px;
 `;

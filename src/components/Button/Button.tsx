@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import { Sizes } from 'src/common/types/Sizes';
@@ -7,9 +8,17 @@ import { buttonSizeMap, buttonColorMap } from 'src/common/theme';
 interface IButtonProps {
   type?: InteractiveContextTypes;
   size?: Sizes;
+  selected?: Boolean;
 }
 
-export const Button = styled.button<IButtonProps>`
+export const Button = styled.button.attrs<IButtonProps>(props => {
+  const btnProps: React.HTMLProps<HTMLButtonElement> = {};
+  if (props.selected) btnProps.tabIndex = -1;
+
+  return btnProps;
+})<IButtonProps>`
+  position: relative;
+  z-index: 0;
   vertical-align: middle;
   box-sizing: border-box;
   display: inline-block;
@@ -70,6 +79,7 @@ export const Button = styled.button<IButtonProps>`
   }};
 
   &:focus, &:hover {
+    z-index: 1;
     color: ${props => {
       const subMap = props.type && buttonColorMap[props.type];
 
@@ -118,6 +128,8 @@ export const Button = styled.button<IButtonProps>`
   }
 
   &:disabled {
+    z-index: 0;
+    cursor: not-allowed;
     color: ${props => {
       const subMap = props.type && buttonColorMap[props.type];
 
@@ -140,4 +152,15 @@ export const Button = styled.button<IButtonProps>`
         : 'transparent'
     }};
   }
+
+  ${props => {
+    if (!props.selected) return '';
+    const subMap = props.type ? buttonColorMap[props.type] : buttonColorMap.default;
+
+    return `
+      background-color: ${subMap.active.border}!important;
+      border-color: ${subMap.active.border}!important;
+      pointer-events: none;
+    `;
+  }}
 `;
