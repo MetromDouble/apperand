@@ -1,26 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 
-interface IGridContainerProps {
-  columns: string[];
-  rows: string[];
-}
-const GridContainer = styled.div<IGridContainerProps>`
-  display: grid;
-  height: 100%;
-  grid-template-rows: ${props => props.rows.join(' ')};
-  grid-template-columns: ${props => props.columns.join(' ')};
-`;
+import GridArea from './GridArea';
+import GridContainer from './GridContainer';
 
-interface IGridAreaProps {
-  area: string[];
-}
-const GridArea = styled.div<IGridAreaProps>`
-  display: block;
-  grid-area: ${props => props.area.join(' / ')}
-`;
-
-export const Grid = () => {
+const Grid = () => {
   return (
     <GridContainer columns={['30px', '30px', 'auto', '30px', '30px']} rows={['20px', 'auto', '20px']}>
       <GridArea area={['1', '2', '3', '5']} style={{ background: '#eee' }} />
@@ -28,3 +11,5 @@ export const Grid = () => {
     </GridContainer>
   );
 };
+
+export default Grid;

@@ -56,8 +56,8 @@ export const buttonSizeMap: Record<Sizes, Record<string, string>> = {
   },
   xs: {
     height: '24px',
-    paddingHorizontal: '8px',
-    fontSize: '14px',
+    paddingHorizontal: '4px',
+    fontSize: '12px',
   },
   s: {
     height: '32px',
@@ -94,7 +94,7 @@ export const inputSizeMap: Record<Sizes, Record<string, string>> = {
   },
   xs: {
     height: '24px',
-    fontSize: '14px',
+    fontSize: '12px',
     inputMargin: '4px',
   },
   s: {

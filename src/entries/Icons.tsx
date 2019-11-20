@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'src/components/Button/Button';
-import { Input } from 'src/components/Input/Input';
+import Input from 'src/components/Input/Input';
 
 import { IconsExpo } from 'src/entries/IconsExpo';
 

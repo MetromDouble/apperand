@@ -5,7 +5,7 @@ import { Sizes } from 'src/common/types/Sizes';
 import { InputTypes } from './InputTypes';
 import { inputSizeMap } from 'src/common/theme';
 
-import { InputField } from './InputField';
+import InputField from './InputField';
 
 import CheckboxMaskSVG from 'src/assets/images/CheckboxMask.svg';
 import RadioMaskSVG from 'src/assets/images/RadioMask.svg';
@@ -13,10 +13,11 @@ import RadioMaskSVG from 'src/assets/images/RadioMask.svg';
 interface IInputProps {
   type: InputTypes;
   size?: Sizes;
+  width?: string;
   children?: ReactNode;
 }
 
-export const Input = React.memo<IInputProps>(
+const Input = React.memo<IInputProps>(
   ({
     type,
     size = 'm',
@@ -26,7 +27,6 @@ export const Input = React.memo<IInputProps>(
     return (
       <InputWrapper
         size={size}
-        type={type}
       >
         {['checkbox', 'radio'].some(t => t === type) && (
           <>
@@ -62,9 +62,10 @@ export const Input = React.memo<IInputProps>(
   }
 );
 
+export default Input;
+
 interface IInputWrapperProps {
   size: Sizes;
-  type: InputTypes;
 }
 const InputWrapper = styled.div<IInputWrapperProps>`
   display: flex;
@@ -138,5 +139,4 @@ const InputDecoration = styled.div`
   height: 100%;
   top: 0;
   right: 0;
-  z-index: -1;
 `;

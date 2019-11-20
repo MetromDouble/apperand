@@ -18,6 +18,12 @@ export const ButtonGroup = React.memo<IButtonGroupProps>(
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: stretch;
+  width: 100%;
+
+  button {
+    flex-grow: 1;
+  }
 
   button:not(:last-child) {
     margin-right: -1px;

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { GridArea } from 'src/components/Grid/GridArea';
-import { GridContainer } from 'src/components/Grid/GridContainer';
+import GridArea from 'src/components/Grid/GridArea';
+import GridContainer from 'src/components/Grid/GridContainer';
 import { Header } from 'src/components/Header/Header';
 import { WorkArea } from 'src/components/WorkArea/WorkArea';
 import { Toolbar } from 'src/components/Toolbar/Toolbar';
