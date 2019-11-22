@@ -5,14 +5,13 @@ import { inputSizeMap } from 'src/common/theme';
 
 interface IInputFieldProps {
   sz: Sizes;
-  width?: string;
 }
 const InputField = styled.input<IInputFieldProps>`
   position: relative;
   z-index: 1;
   flex: 1 1 100%;
+  width: 100%;
   height: 100%;
-  width: ${props => props.width ? props.width : '100%'};
   font-size: ${props => inputSizeMap[props.sz].fontSize};
   font-family: 'Roboto', 'Ubuntu', 'Arial', 'Helvetica Neue', sans-serif;
   outline: none;

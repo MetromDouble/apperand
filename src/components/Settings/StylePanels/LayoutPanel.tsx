@@ -21,7 +21,7 @@ export const LayoutPanel = React.memo<ILayoutPanelProps>(
 
   }) => {
     return (
-      <Expander title="Layout">
+      <Expander title="Layout" expanded>
         <ControlRow>
           <ControlCol basis="20%">
             <ControlLabel>Display</ControlLabel>

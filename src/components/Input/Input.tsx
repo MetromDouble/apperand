@@ -13,7 +13,7 @@ import RadioMaskSVG from 'src/assets/images/RadioMask.svg';
 interface IInputProps {
   type: InputTypes;
   size?: Sizes;
-  width?: string;
+  basis?: string;
   children?: ReactNode;
 }
 
@@ -55,6 +55,9 @@ const Input = React.memo<IInputProps>(
               {...props}
             />
             <InputDecoration />
+            <InputAddition>
+              {children}
+            </InputAddition>
           </>
         )}
       </InputWrapper>
@@ -139,4 +142,12 @@ const InputDecoration = styled.div`
   height: 100%;
   top: 0;
   right: 0;
+`;
+
+const InputAddition = styled.div`
+  display: flex;
+  align-items: center;
+  order: 1;
+  position: relative;
+  z-index: 1;
 `;

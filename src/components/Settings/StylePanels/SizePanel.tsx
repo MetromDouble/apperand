@@ -5,6 +5,8 @@ import ControlLabel from 'src/components/Settings/Layout/ControlLabel';
 import ControlRow from 'src/components/Settings/Layout/ControlRow';
 import ControlCol from 'src/components/Settings/Layout/ControlCol';
 import Divider from 'src/components/Settings/Layout/Divider';
+import UnitButton from 'src/components/Settings/Layout/UnitButton';
+import MarkedText from 'src/components/Settings/Layout/MarkedText';
 import { Expander } from 'src/components/Expander/Expander';
 import Input from 'src/components/Input/Input';
 import { ButtonGroup } from 'src/components/ButtonGroup/ButtonGroup';
@@ -21,35 +23,87 @@ export const SizePanel = React.memo<ISizePanelProps>(
 
   }) => {
     return (
-      <Expander title="Size">
+      <Expander title="Size" expanded>
         <ControlRow>
           <ControlCol>
-            <ControlLabel>Width</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  Width
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text">
+                  <UnitButton type="default" size="xxs" borderless>
+                    PX
+                  </UnitButton>
+                </Input>
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
           <ControlCol>
-            <ControlLabel>Height</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  Height
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text" />
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
         </ControlRow>
         <ControlRow>
           <ControlCol>
-            <ControlLabel>MinW</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  MinW
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text" />
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
           <ControlCol>
-            <ControlLabel>MinH</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  MinH
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text" />
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
         </ControlRow>
         <ControlRow>
           <ControlCol>
-            <ControlLabel>MaxW</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  MaxW
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text" />
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
           <ControlCol>
-            <ControlLabel>MaxH</ControlLabel>
-            <Input size="xs" type="text" width="56px" />
+            <ControlLabel>
+              <ControlCol>
+                <MarkedText>
+                  MaxH
+                </MarkedText>
+              </ControlCol>
+              <ControlCol basis="160px">
+                <Input size="xs" type="text" />
+              </ControlCol>
+            </ControlLabel>
           </ControlCol>
         </ControlRow>
         <Divider />

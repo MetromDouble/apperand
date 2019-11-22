@@ -9,6 +9,7 @@ interface IButtonProps {
   type?: InteractiveContextTypes;
   size?: Sizes;
   selected?: Boolean;
+  borderless?: Boolean;
 }
 
 export const Button = styled.button.attrs<IButtonProps>(props => {
@@ -46,7 +47,7 @@ export const Button = styled.button.attrs<IButtonProps>(props => {
       : buttonSizeMap.m.fontSize
   }};
   cursor: pointer;
-  border-width: 1px;
+  border-width: ${props => props.borderless ? '0!important' : '1px'};
   border-style: solid;
   transition: color .1s ease-out, background-color .1s ease-out, border-color .1s ease-out, transform .1s ease-out;
   height: ${props => {

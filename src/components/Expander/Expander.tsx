@@ -6,13 +6,15 @@ import { TriangleArrowSIcon } from 'src/components/icons/TriangleArrowSIcon';
 interface IExpanderProps {
   children?: ReactNode;
   title: ReactNode;
+  expanded?: boolean;
 }
 export const Expander = React.memo<IExpanderProps>(
   ({
     title,
     children,
+    expanded = false,
   }) => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(expanded);
 
     const toggleVisible = () => {
       setVisible(oldVisible => !oldVisible);
