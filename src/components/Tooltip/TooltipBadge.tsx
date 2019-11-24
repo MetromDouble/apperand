@@ -33,7 +33,7 @@ const TooltipBadge = styled.div<ITooltipBadgeProps>`
     content: '';
     position: absolute;
     display: ${props => props.origin === 'center' ? 'none' : 'block'};
-    border-width: 6px;
+    border-width: 8.4px;
     border-style: solid;
     border-color: transparent;
 
@@ -48,23 +48,23 @@ const TooltipBadge = styled.div<ITooltipBadgeProps>`
       let right = '';
       let bottom = '';
       let left = '';
-      let shift = '-12px';
+      let shift = '-15px';
 
       if (second === 'top') {
-        top = `top: 0; border-width: 3px; border-top-color: ${borderColor};`;
-        shift = '-6px';
+        top = `top: 0; border-width: 4.4px; border-top-color: ${borderColor};`;
+        shift = '-7px';
       }
       if (second === 'right') {
-        right = `right: 0; border-width: 3px; border-right-color: ${borderColor};`;
-        shift = '-6px';
+        right = `right: 0; border-width: 4.4px; border-right-color: ${borderColor};`;
+        shift = '-7px';
       }
       if (second === 'bottom') {
-        bottom = `bottom: 0; border-width: 3px; border-bottom-color: ${borderColor};`;
-        shift = '-6px';
+        bottom = `bottom: 0; border-width: 4.4px; border-bottom-color: ${borderColor};`;
+        shift = '-7px';
       }
       if (second === 'left') {
-        left = `left: 0; border-width: 3px; border-left-color: ${borderColor};`;
-        shift = '-6px';
+        left = `left: 0; border-width: 4.4px; border-left-color: ${borderColor};`;
+        shift = '-7px';
       }
 
       if (first === 'top') {
@@ -80,10 +80,10 @@ const TooltipBadge = styled.div<ITooltipBadgeProps>`
         left = `left: ${shift}; border-right-color: ${borderColor};`;
       }
       if (second === 'center' && (first === 'right' || first === 'left')) {
-        top = 'top: calc(50% - 6px);';
+        top = 'top: calc(50% - 8px);';
       }
       if (second === 'center' && (first === 'top' || first === 'bottom')) {
-        left = 'left: calc(50% - 6px);';
+        left = 'left: calc(50% - 8px);';
       }
 
       return `

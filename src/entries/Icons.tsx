@@ -8,7 +8,7 @@ import { IconsExpo } from 'src/entries/IconsExpo';
 export const Icons: React.FC = () => {
   return (
     <>
-      <TooltipBadge origin="top-right">TextText</TooltipBadge>
+      <TooltipBadge origin="top-left">TextText</TooltipBadge>
       <Button type="default" size="xxs" />
       <Button type="default" size="xs" />
       <Button type="primary" size="s" />
