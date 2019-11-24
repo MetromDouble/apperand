@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button } from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
+import TooltipBadge from 'src/components/Tooltip/TooltipBadge';
 
 import { IconsExpo } from 'src/entries/IconsExpo';
 
 export const Icons: React.FC = () => {
   return (
     <>
+      <TooltipBadge origin="top-right">TextText</TooltipBadge>
       <Button type="default" size="xxs" />
       <Button type="default" size="xs" />
       <Button type="primary" size="s" />

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import ControlLabel from 'src/components/Settings/Layout/ControlLabel';
 import ControlRow from 'src/components/Settings/Layout/ControlRow';
 import ControlCol from 'src/components/Settings/Layout/ControlCol';
 import Divider from 'src/components/Settings/Layout/Divider';
-import UnitButton from 'src/components/Settings/Layout/UnitButton';
-import MarkedText from 'src/components/Settings/Layout/MarkedText';
+import InsideInputButton from 'src/components/Settings/Layout/InsideInputButton';
+import LEDLabel from 'src/components/Settings/Layout/LEDLabel';
 import { Expander } from 'src/components/Expander/Expander';
 import Input from 'src/components/Input/Input';
+import TriggerOverlay from 'src/components/Popover/TriggerOverlay';
 import { ButtonGroup } from 'src/components/ButtonGroup/ButtonGroup';
 import { Button } from 'src/components/Button/Button';
 
@@ -22,21 +23,30 @@ export const SizePanel = React.memo<ISizePanelProps>(
   ({
 
   }) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const onClick = () => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    };
+
     return (
       <Expander title="Size" expanded>
         <ControlRow>
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
-                  Width
-                </MarkedText>
+                <TriggerOverlay>
+                  <LEDLabel>
+                    Width
+                  </LEDLabel>
+                </TriggerOverlay>
               </ControlCol>
               <ControlCol basis="160px">
                 <Input size="xs" type="text">
-                  <UnitButton type="default" size="xxs" borderless>
+                  <InsideInputButton type="default" size="xxs" borderless onClick={onClick}>
                     PX
-                  </UnitButton>
+                  </InsideInputButton>
                 </Input>
               </ControlCol>
             </ControlLabel>
@@ -44,12 +54,12 @@ export const SizePanel = React.memo<ISizePanelProps>(
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
+                <LEDLabel>
                   Height
-                </MarkedText>
+                </LEDLabel>
               </ControlCol>
               <ControlCol basis="160px">
-                <Input size="xs" type="text" />
+                <Input size="xs" type="text" ref={inputRef} />
               </ControlCol>
             </ControlLabel>
           </ControlCol>
@@ -58,9 +68,9 @@ export const SizePanel = React.memo<ISizePanelProps>(
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
+                <LEDLabel>
                   MinW
-                </MarkedText>
+                </LEDLabel>
               </ControlCol>
               <ControlCol basis="160px">
                 <Input size="xs" type="text" />
@@ -70,9 +80,9 @@ export const SizePanel = React.memo<ISizePanelProps>(
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
+                <LEDLabel>
                   MinH
-                </MarkedText>
+                </LEDLabel>
               </ControlCol>
               <ControlCol basis="160px">
                 <Input size="xs" type="text" />
@@ -84,9 +94,9 @@ export const SizePanel = React.memo<ISizePanelProps>(
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
+                <LEDLabel>
                   MaxW
-                </MarkedText>
+                </LEDLabel>
               </ControlCol>
               <ControlCol basis="160px">
                 <Input size="xs" type="text" />
@@ -96,9 +106,9 @@ export const SizePanel = React.memo<ISizePanelProps>(
           <ControlCol>
             <ControlLabel>
               <ControlCol>
-                <MarkedText>
+                <LEDLabel>
                   MaxH
-                </MarkedText>
+                </LEDLabel>
               </ControlCol>
               <ControlCol basis="160px">
                 <Input size="xs" type="text" />

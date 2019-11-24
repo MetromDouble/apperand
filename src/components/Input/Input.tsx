@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Ref } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Sizes } from 'src/common/types/Sizes';
@@ -17,13 +17,13 @@ interface IInputProps {
   children?: ReactNode;
 }
 
-const Input = React.memo<IInputProps>(
+const Input = React.forwardRef<HTMLInputElement, IInputProps>(
   ({
     type,
     size = 'm',
     children,
     ...props
-  }) => {
+  }, ref) => {
     return (
       <InputWrapper
         size={size}
@@ -37,6 +37,7 @@ const Input = React.memo<IInputProps>(
               <InputField
                 sz={size}
                 type={type}
+                ref={ref}
                 {...props}
               />
               <InputIcon
@@ -52,6 +53,7 @@ const Input = React.memo<IInputProps>(
             <InputField
               sz={size}
               type={type}
+              ref={ref}
               {...props}
             />
             <InputDecoration />

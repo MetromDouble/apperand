@@ -22,7 +22,10 @@ export const Button = styled.button.attrs<IButtonProps>(props => {
   z-index: 0;
   vertical-align: middle;
   box-sizing: border-box;
-  display: inline-block;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   outline: none;
   padding: 0 ${props => {
     const sizeObject = props.size && buttonSizeMap[props.size];

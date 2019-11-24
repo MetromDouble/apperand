@@ -24,7 +24,7 @@ const InputField = styled.input<IInputFieldProps>`
 
   & + div {
     border: 1px solid ${props => props.theme.palette.gs20};
-    background: ${props => props.theme.palette.maxLight};
+    background-color: ${props => props.theme.palette.maxLight};
   }
 
   &:active + div {
