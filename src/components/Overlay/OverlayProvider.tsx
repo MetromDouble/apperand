@@ -1,29 +1,47 @@
 import React, { useState } from 'react';
 
 import { OverlayContext } from './OverlayContext';
+import { OverlayType } from './OverlayTrigger';
 
-interface ITabData {
-  head: React.ReactNode;
-  body: React.ReactNode;
-  order?: number;
-  selected?: boolean;
-  onSelect?: () => void;
+interface ITooltipData {
+  id: string;
+  visible: boolean;
+  child: React.ReactNode;
 }
 
 interface IOverlayProviderProps {
 }
-export const Tabs = React.memo<IOverlayProviderProps>(
+const OverlayProvider = React.memo<IOverlayProviderProps>(
   ({
     children
   }) => {
+    const [tooltip, setTooltip] = useState<null | ITooltipData>(null);
     const [modals, setModals] = useState<any>({});
 
-    const addTooltip = (index: string, tooltip: React.ReactNode) => {};
-    const removeTooltip = (index: string) => {};
-    const addPopover = (index: string, popover: React.ReactNode) => {};
-    const removePopover = () => {};
-    const addModal = (index: string, modal: React.ReactNode) => {};
-    const removeModal = (index: string) => {};
+    const addTooltip = (id: string, tooltip: React.ReactNode) => {
+      setTooltip({
+        id,
+        child: tooltip,
+        visible: false
+      });
+    };
+    const removeTooltip = (id: string) => {
+      setTooltip(null);
+    };
+    const addPopover = (id: string, popover: React.ReactNode) => {};
+    const removePopover = (id: string) => {};
+    const addModal = (id: string, modal: React.ReactNode) => {};
+    const removeModal = (id: string) => {};
+    const show = (id: string, type: OverlayType) => {
+      if (type === 'tooltip' && tooltip && tooltip.id === id) {
+        setTooltip(() => ({ ...tooltip, visible: true }));
+      }
+    };
+    const hide = (id: string, type: OverlayType) => {
+      if (type === 'tooltip' && tooltip && tooltip.id === id) {
+        setTooltip(() => ({ ...tooltip, visible: false }));
+      }
+    };
 
     const maxInt = Number.MAX_SAFE_INTEGER;
 
@@ -36,23 +54,15 @@ export const Tabs = React.memo<IOverlayProviderProps>(
           removePopover,
           addModal,
           removeModal,
+          show,
+          hide,
         }}
       >
         {children}
-        <TabsHeadWrapper>
-          {Object.keys(tabs)
-            .sort((a, b) => (tabs[a].order || maxInt) - (tabs[b].order || maxInt))
-            .map(key => (
-              <TabHeadItem key={key} onClick={tabs[key].onSelect} active={tabs[key].selected}>
-                {tabs[key].head}
-              </TabHeadItem>
-            ))
-          }
-        </TabsHeadWrapper>
-        <TabsBodyWrapper>
-          {Object.keys(tabs).filter(key => tabs[key].selected).map(key => tabs[key].body)}
-        </TabsBodyWrapper>
+        {tooltip && tooltip.visible && tooltip.child}
       </OverlayContext.Provider>
     );
   }
 );
+
+export default OverlayProvider;

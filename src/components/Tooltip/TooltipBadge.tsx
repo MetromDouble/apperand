@@ -19,6 +19,7 @@ interface ITooltipBadgeProps {
   origin?: PopoverOrigin;
 }
 const TooltipBadge = styled.div<ITooltipBadgeProps>`
+  pointer-events: none;
   position: absolute;
   font-size: 14px;
   color: ${props => props.theme.palette.maxLight};

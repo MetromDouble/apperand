@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 // import * as monaco from 'monaco-editor';
 import configureStore from './redux/configureStore';
+
+import OverlayProvider from 'src/components/Overlay/OverlayProvider';
 import { Root } from './Root';
 import * as serviceWorker from './serviceWorker';
 import { palette } from 'src/common/theme';
@@ -23,7 +25,9 @@ ReactDOM.render((
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
-        <Root />
+        <OverlayProvider>
+          <Root />
+        </OverlayProvider>
       </ThemeProvider>
     </ConnectedRouter>
   </Provider>

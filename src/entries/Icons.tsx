@@ -1,14 +1,16 @@
 import React from 'react';
 import { Button } from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
-import TooltipBadge from 'src/components/Tooltip/TooltipBadge';
+import Tooltip from 'src/components/Tooltip/Tooltip';
 
 import { IconsExpo } from 'src/entries/IconsExpo';
 
 export const Icons: React.FC = () => {
   return (
     <>
-      <TooltipBadge origin="top-left">TextText</TooltipBadge>
+      <Tooltip trigger="hover" text="sdFGHJKDFGHJ sjbssjhdk sjdhsjhd sjdhshjd">
+        <button>TESTEST</button>
+      </Tooltip>
       <Button type="default" size="xxs" />
       <Button type="default" size="xs" />
       <Button type="primary" size="s" />
