@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, cloneElement } from 'react';
 
 import { OverlayContext } from './OverlayContext';
 import { OverlayType } from './OverlayTrigger';
+import { ITooltipElementProps } from 'src/components/Tooltip/TooltipElement';
 
 interface ITooltipData {
   id: string;
   visible: boolean;
-  child: React.ReactNode;
+  component: React.ComponentType<ITooltipElementProps>;
+  props: Record<string, any>;
+  triggerElement?: HTMLElement | null;
 }
 
 interface IOverlayProviderProps {
 }
-const OverlayProvider = React.memo<IOverlayProviderProps>(
+const OverlayProvider: React.FC<IOverlayProviderProps> = (
   ({
     children
   }) => {
     const [tooltip, setTooltip] = useState<null | ITooltipData>(null);
     const [modals, setModals] = useState<any>({});
 
-    const addTooltip = (id: string, tooltip: React.ReactNode) => {
+    const addTooltip = (id: string, component: React.ComponentType<ITooltipElementProps>, props: Record<string, any>) => {
       setTooltip({
         id,
-        child: tooltip,
+        component,
+        props,
+        triggerElement: null,
         visible: false
       });
     };
@@ -32,9 +37,9 @@ const OverlayProvider = React.memo<IOverlayProviderProps>(
     const removePopover = (id: string) => {};
     const addModal = (id: string, modal: React.ReactNode) => {};
     const removeModal = (id: string) => {};
-    const show = (id: string, type: OverlayType) => {
+    const show = (id: string, type: OverlayType, triggerElement: HTMLElement | null) => {
       if (type === 'tooltip' && tooltip && tooltip.id === id) {
-        setTooltip(() => ({ ...tooltip, visible: true }));
+        setTooltip(() => ({ ...tooltip, visible: true, triggerElement }));
       }
     };
     const hide = (id: string, type: OverlayType) => {
@@ -42,8 +47,6 @@ const OverlayProvider = React.memo<IOverlayProviderProps>(
         setTooltip(() => ({ ...tooltip, visible: false }));
       }
     };
-
-    const maxInt = Number.MAX_SAFE_INTEGER;
 
     return (
       <OverlayContext.Provider
@@ -59,7 +62,11 @@ const OverlayProvider = React.memo<IOverlayProviderProps>(
         }}
       >
         {children}
-        {tooltip && tooltip.visible && tooltip.child}
+        {tooltip
+          && tooltip.visible
+          && tooltip.triggerElement
+          && <tooltip.component {...(tooltip.props as ITooltipElementProps)} triggerElement={tooltip.triggerElement} />
+      }
       </OverlayContext.Provider>
     );
   }

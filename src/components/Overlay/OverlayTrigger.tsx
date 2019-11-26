@@ -67,8 +67,10 @@ const OverlayTrigger: React.FC<IOverlayTriggerProps> = (
     const triggers = ([] as TriggerType[]).concat(trigger);
 
     const show = () => {
+      const element = triggerRef.current;
+
       setVisible(true);
-      overlayContext.show(id, type);
+      overlayContext.show(id, type, element);
     }
     const hide = () => {
       setVisible(false);

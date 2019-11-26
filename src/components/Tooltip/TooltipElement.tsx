@@ -1,4 +1,23 @@
+import React, { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+
+export interface ITooltipElementProps {
+  triggerElement?: HTMLElement | null;
+}
+const TooltipElement = React.memo<ITooltipElementProps>(
+  ({
+    triggerElement,
+    children,
+  }) => {
+    return (
+      <TooltipContainer>
+        {children}
+      </TooltipContainer>
+    );
+  }
+);
+
+export default TooltipElement;
 
 type PopoverOrigin =
   'center'
@@ -15,10 +34,10 @@ type PopoverOrigin =
   | 'left-center'
   | 'left-bottom';
 
-interface ITooltipBadgeProps {
+interface ITooltipContainerProps {
   origin?: PopoverOrigin;
 }
-const TooltipBadge = styled.div<ITooltipBadgeProps>`
+const TooltipContainer = styled.div<ITooltipContainerProps>`
   pointer-events: none;
   position: absolute;
   font-size: 14px;
@@ -96,5 +115,3 @@ const TooltipBadge = styled.div<ITooltipBadgeProps>`
     }}
   }
 `;
-
-export default TooltipBadge;

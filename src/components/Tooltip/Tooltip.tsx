@@ -3,9 +3,9 @@ import nanoid from 'nanoid';
 
 import OverlayTrigger, { TriggerType, DelayObject } from 'src/components/Overlay/OverlayTrigger';
 import { OverlayContext } from 'src/components/Overlay/OverlayContext';
-import TooltipBadge from './TooltipBadge';
+import TooltipElement from './TooltipElement';
 
-interface ITooltipProps {
+export interface ITooltipProps {
   text: string;
   trigger?: TriggerType | TriggerType[];
   delay?: number | DelayObject;
@@ -22,9 +22,7 @@ const Tooltip = React.memo<ITooltipProps>(
     const overlayContext = useContext(OverlayContext);
 
     useEffect(() => {
-      overlayContext.addTooltip(id.current, (
-        <TooltipBadge>{text}</TooltipBadge>
-      ))
+      overlayContext.addTooltip(id.current, TooltipElement, { children: text })
 
       return () => {
         overlayContext.removeTooltip(id.current)
