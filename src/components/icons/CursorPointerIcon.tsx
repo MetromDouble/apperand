@@ -4,7 +4,7 @@ import { Icon, IIconProps } from 'src/components/Icon';
 export const CursorPointerIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
-      <path d="M5.5 14.5c-.8-.8-2.7-2.9-2.7-4.3C2.7 8.3 4.1 8 4.1 8l.5 1.6.4-.1v-7c0-1.2 2-1.4 2 0 0 .6.1 2.5.3 4.2 1.8.1 4 .9 5 2.1-.4 1.6-.9 5-.9 5l-5.9.7z"/>
+      <path d="M7.5 6.8c-.3 0-.6 0-.9.1l-.7-4.2c0-.4-.4-.7-.8-.7-.5.1-.8.5-.7.9L5.1 9l-.6.1-.9-.9c-.6.1-1.4.9-1.1 2.4.5 2 2 3.6 3.9 4.3l6-.9.6-5c-1.5-1.4-3.4-2.2-5.5-2.2z"/>
     </>
   );
 

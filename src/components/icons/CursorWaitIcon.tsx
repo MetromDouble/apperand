@@ -4,7 +4,17 @@ import { Icon, IIconProps } from 'src/components/Icon';
 export const CursorWaitIcon: React.FC<IIconProps> = ({ size, onlyPath, ...props }) => {
   const path = (
     <>
-      <path d="M8 5.5c-.6 0-1-.4-1-1v-2c0-.6.4-1 1-1s1 .4 1 1v2c0 .6-.4 1-1 1zM8 14c-.3 0-.5-.2-.5-.5v-3c0-.3.2-.5.5-.5s.5.2.5.5v3c0 .3-.2.5-.5.5zM2 8c0-.4.3-.8.7-.8h2.5c.5.1.8.4.8.8s-.3.7-.7.7H2.7c-.4.1-.7-.3-.7-.7zm8 0c0-.3.2-.5.5-.5h3c.3 0 .5.2.5.5s-.2.5-.5.5h-3c-.3 0-.5-.2-.5-.5zM3.7 3.7c.3-.3.8-.3 1.1 0l1.8 1.8c.3.3.3.8 0 1.1-.3.3-.8.3-1.1 0L3.7 4.8c-.3-.3-.3-.8 0-1.1zm5.8 5.9c.2-.2.5-.2.7 0l2.1 2.1c.2.2.2.5 0 .7-.2.2-.5.2-.7 0l-2.1-2.1c-.2-.1-.2-.5 0-.7zm-3-.1c.3.3.3.7 0 1l-1.8 1.8c-.3.3-.7.3-1 0-.3-.3-.3-.7 0-1l1.8-1.8c.3-.3.8-.3 1 0zm6.1-5.9c.2.2.2.5 0 .7l-2.1 2.1c-.2.2-.5.2-.7 0-.2-.1-.2-.4 0-.6l2.1-2.1c.2-.2.5-.2.7-.1z"/>
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<g>
+	<polygon points="8,6 10,4 6,4 	"/>
+	<path d="M13,5V1.5H3V5c1.7,0,3,1.3,3,3s-1.3,3-3,3v3.5h10V11c-1.7,0-3-1.3-3-3S11.3,5,13,5z M9,8c0,1.9,1.3,3.4,3,3.9v0.6h-2l-2-2
+		l-2,2H4v-0.6c1.7-0.4,3-2,3-3.9S5.7,4.6,4,4.1V3h8v1.1C10.3,4.6,9,6.1,9,8z"/>
+</g>
+
+
     </>
   );
 
