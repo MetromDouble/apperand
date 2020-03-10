@@ -8,7 +8,7 @@ import { IconsExpo } from 'src/entries/IconsExpo';
 export const Icons: React.FC = () => {
   return (
     <>
-      <Tooltip trigger="hover" text="sdFGHJKDFGHJ sjbssjhdk sjdhsjhd sjdhshjd">
+      <Tooltip trigger="hover" text="sdFGHJKDFGHJ sjbssjhdk sjdhsjhd sjdhshjd" origin="right">
         <button>TESTEST</button>
       </Tooltip>
       <Button type="default" size="xxs" />

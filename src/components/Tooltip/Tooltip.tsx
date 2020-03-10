@@ -5,10 +5,13 @@ import OverlayTrigger, { TriggerType, DelayObject } from 'src/components/Overlay
 import { OverlayContext } from 'src/components/Overlay/OverlayContext';
 import TooltipElement from './TooltipElement';
 
+import { PopoverOrigin } from 'src/common/types/Overlay';
+
 export interface ITooltipProps {
   text: string;
   trigger?: TriggerType | TriggerType[];
   delay?: number | DelayObject;
+  origin?: PopoverOrigin;
   children: React.ReactNode;
 }
 const Tooltip = React.memo<ITooltipProps>(
@@ -16,13 +19,14 @@ const Tooltip = React.memo<ITooltipProps>(
     text,
     trigger = 'hover',
     delay,
+    origin,
     children,
   }) => {
     const id = useRef(nanoid());
     const overlayContext = useContext(OverlayContext);
 
     useEffect(() => {
-      overlayContext.addTooltip(id.current, TooltipElement, { children: text })
+      overlayContext.addTooltip(id.current, TooltipElement, { children: text, origin })
 
       return () => {
         overlayContext.removeTooltip(id.current)
