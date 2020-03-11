@@ -16,7 +16,7 @@ const createEdge = (o: string | string[], type: string, i: string | string[]) =>
   return edges;
 };
 
-const prepareInitialGraph = () => {
+export const prepareInitialGraph = () => {
   const __NodeId = nanoid();
   const __EdgeId = nanoid();
 

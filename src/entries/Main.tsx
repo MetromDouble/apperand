@@ -8,6 +8,10 @@ import { Toolbar } from 'src/components/Toolbar/Toolbar';
 import { Settings } from 'src/components/Settings';
 import { Breadcrumbs } from 'src/components/Breadcrumbs/Breadcrumbs';
 
+import { prepareInitialGraph } from 'src/common/initialGraph';
+
+window.FFF = prepareInitialGraph();
+
 export const Main = () => {
   return (
     <GridContainer columns={['40px', '1fr', '240px']} rows={['40px', '1fr', '40px']}>
