@@ -1,35 +1,35 @@
 import nanoid from 'nanoid';
 
-interface Node<T = unknown> {
+export interface Node<T = unknown> {
   id: string;
-  type: string;
+  name: string;
   meta?: T;
 }
 
-interface NodeInput<T = unknown> {
+export interface NodeInput<T = unknown> {
   id?: string;
-  type: string;
+  name: string;
   meta?: T;
 }
 
-interface Edge {
+export interface Edge {
   id: string;
   type: string;
-  in: string;
-  out: string;
+  i: string;
+  o: string;
 }
 
-interface EdgeInput {
+export interface EdgeInput {
   id?: string;
   type: string;
-  in: string;
-  out: string;
+  i: string;
+  o: string;
 }
 
 const idRootNode = nanoid();
 const RootNode: Node = {
   id: idRootNode,
-  type: 'NodeType',
+  name: 'NodeType',
 };
 
 export default class GraphStone {
@@ -46,8 +46,8 @@ export default class GraphStone {
   }
 
   public addNode<T = unknown>(node: NodeInput<T>) {
-    if (!this.nodes.get(node.type)) {
-      console.warn(`GraphStone: NodeType ${node.type} does not exist`);
+    if (!this.nodes.get(node.name)) {
+      console.warn(`GraphStone: NodeType ${node.name} does not exist`);
       return;
     }
     const id = node.id || nanoid();
