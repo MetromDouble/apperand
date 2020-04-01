@@ -1,15 +1,15 @@
 import nanoid from 'nanoid';
-import { Edge } from './GraphStone';
+import { Edge, Graph } from './GraphStone';
 
 const createEdge = (o: string | string[], type: string, i: string | string[]) => {
   const input = Array.isArray(i) ? i : [i];
   const output = Array.isArray(o) ? o : [o];
-  const edges: Record<string, Edge> = {};
+  const edges: Edge[] = [];
 
   input.forEach(inputId => {
     output.forEach(outputId => {
       const id = nanoid();
-      edges[id] = { id, type, i: inputId, o: outputId };
+      edges.push({ type, i: inputId, o: outputId });
     });
   });
 
@@ -33,28 +33,26 @@ export const prepareInitialGraph = () => {
   const ValueId = nanoid();
 
   const e_childOf = nanoid();
+  const e_parentOf = nanoid();
 
-  const graph = {
-    nodes: {
-      [__NodeId]: { id: __NodeId, name: '__Node' },
+  const graph: Graph = {
+    nodes: [
+      { id: __NodeId, name: '__Node' },
+      { id: __EdgeId, name: '__Edge' },
 
-      [__EdgeId]: { id: __EdgeId, name: '__Edge' },
+      { id: ScalarId, name: 'Scalar' },
+      { id: IntId, name: 'Int' },
+      { id: FloatId, name: 'Float' },
+      { id: StringId, name: 'String' },
+      { id: BooleanId, name: 'Boolean' },
+      { id: TypeId, name: 'Type' },
+      { id: ListId, name: 'List' },
+      { id: KeyId, name: 'Key' },
+      { id: ValueId, name: 'Value' },
 
-      [ScalarId]: { id: ScalarId, name: 'Scalar' },
-      [IntId]: { id: IntId, name: 'Int' },
-      [FloatId]: { id: FloatId, name: 'Float' },
-      [StringId]: { id: StringId, name: 'String' },
-      [BooleanId]: { id: BooleanId, name: 'Boolean' },
-
-      [TypeId]: { id: TypeId, name: 'Type' },
-      [ListId]: { id: ListId, name: 'List' },
-      [InterfaceId]: { id: InterfaceId, name: 'Interface' },
-      [KeyId]: { id: KeyId, name: 'Key' },
-      [ValueId]: { id: ValueId, name: 'Value' },
-
-      [e_childOf]: { id: e_childOf, name: 'child_of' },
-    },
-    edges: {
+      { id: e_childOf, name: 'child_of' },
+    ],
+    edges: [
       ...createEdge([
         __NodeId,
         __EdgeId,
@@ -69,12 +67,34 @@ export const prepareInitialGraph = () => {
         KeyId,
         ValueId,
       ], e_childOf, __NodeId),
+      ...createEdge(__NodeId, e_parentOf, [
+        __NodeId,
+        __EdgeId,
+        ScalarId,
+        IntId,
+        FloatId,
+        StringId,
+        BooleanId,
+        TypeId,
+        ListId,
+        InterfaceId,
+        KeyId,
+        ValueId,
+      ]),
       ...createEdge([
         IntId,
         FloatId,
         StringId,
         BooleanId,
       ], e_childOf, ScalarId),
-    }
+      ...createEdge(ScalarId, e_parentOf, [
+        IntId,
+        FloatId,
+        StringId,
+        BooleanId,
+      ]),
+    ]
   };
+
+  return graph;
 };

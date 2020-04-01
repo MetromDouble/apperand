@@ -1,69 +1,122 @@
 import nanoid from 'nanoid';
 
-export interface Node<T = unknown> {
-  id: string;
-  name: string;
-  meta?: T;
-}
-
 export interface NodeInput<T = unknown> {
   id?: string;
   name: string;
   meta?: T;
 }
 
-export interface Edge {
+export interface Node extends NodeInput {
   id: string;
+}
+
+export interface Edge {
   type: string;
   i: string;
   o: string;
 }
 
-export interface EdgeInput {
-  id?: string;
-  type: string;
-  i: string;
-  o: string;
+export interface Graph {
+  nodes: Node[],
+  edges: Edge[],
 }
 
-const idRootNode = nanoid();
-const RootNode: Node = {
-  id: idRootNode,
-  name: 'NodeType',
-};
+type Index = WeakMap<Node, {
+  forward: WeakMap<Edge, Node>;
+  backward: WeakMap<Edge, Node>;
+}>
 
 export default class GraphStone {
-  private nodes: Map<string, Node> = new Map();
-  private edges: Map<string, Edge> = new Map();
-  private nodeTypeIndex: Map<string, Map<string, Node>> = new Map();
-  private edgeTypeIndex: Map<string, Map<string, Edge>> = new Map();
-  private edgeInIndex: Map<string, Map<string, Edge>> = new Map();
-  private edgeOutIndex: Map<string, Map<string, Edge>> = new Map();
+  private nodeMap: Map<string, Node> = new Map();
+  private edgeMap: Map<Node, Set<Edge>> = new Map();
+  private indexMap: Index = new WeakMap();
 
-  constructor(nodes: Node[], edges: Edge[]) {
-    nodes.forEach(node => this.nodes.set(node.id, node));
-    edges.forEach(this.addEdge);
+  public addNodes(nodes: NodeInput | NodeInput[]): string[] {
+    const created: string[] = [];
+    [nodes].flat().forEach(_node => {
+      const id = _node.id || nanoid();
+      created.push(id);
+      const node = {
+        ..._node,
+        id: _node.id || id
+      };
+      this.nodeMap.set(node.id, node);
+      if (!this.indexMap.has(node))
+        this.indexMap.set(node, { forward: new WeakMap(), backward: new WeakMap() });
+    });
+
+    return created;
   }
 
-  public addNode<T = unknown>(node: NodeInput<T>) {
-    if (!this.nodes.get(node.name)) {
-      console.warn(`GraphStone: NodeType ${node.name} does not exist`);
-      return;
-    }
-    const id = node.id || nanoid();
-    this.nodes.set(id, { ...node, id })
+  public removeNodes(nodeIds: string | string[]): void {
+    [nodeIds].flat().forEach(nodeId => {
+      const node = this.nodeMap.get(nodeId);
+      if (node) {
+        this.nodeMap.delete(nodeId);
+        this.removeEdges(null, nodeId, null);
+        this.removeEdges(null, null, nodeId);
+      }
+    });
   }
 
-  public addEdge(edge: EdgeInput) {
-    if (!this.nodes.get(edge.in)) {
-      console.warn(`GraphStone: EdgeType 'in|'${edge.in} does not exist`);
-      return;
-    }
-    if (!this.nodes.get(edge.out)) {
-      console.warn(`GraphStone: EdgeType 'out|'${edge.out} does not exist`);
-      return;
-    }
-    const id = edge.id || nanoid();
-    this.edges.set(id, { ...edge, id });
+  public addEdges(edges: Edge | Edge[]): void {
+    [edges].flat().forEach(edge => {
+      const inNode = this.nodeMap.get(edge.i);
+      const outNode = this.nodeMap.get(edge.o);
+      const typeNode = this.nodeMap.get(edge.type);
+
+      if (inNode && outNode && typeNode) {
+        if (!this.edgeMap.has(typeNode))
+          this.edgeMap.set(typeNode, new Set());
+        this.edgeMap.get(typeNode)!.add(edge);
+
+        if (!this.indexMap.has(inNode))
+          this.indexMap.set(inNode, { forward: new WeakMap(), backward: new WeakMap() });
+        if (!this.indexMap.has(outNode))
+          this.indexMap.set(outNode, { forward: new WeakMap(), backward: new WeakMap() });
+        const inNodeIndex = this.indexMap.get(inNode);
+        const outNodeIndex = this.indexMap.get(outNode);
+
+        if (!inNodeIndex!.forward.has(edge))
+          inNodeIndex!.forward.set(edge, outNode);
+        if (!outNodeIndex!.backward.has(edge))
+          outNodeIndex!.backward.set(edge, inNode);
+      }
+    });
+  }
+
+  public removeEdges(
+    types: string | string[] | null,
+    inNodeIds: string | string[] | null,
+    outNodeIds: string | string[] | null,
+  ): void {
+    const checkAndClean = (edge: Edge, _: unknown, set: Set<Edge>) => {
+      if (inNodeIds === null && outNodeIds === null) {
+        set.clear();
+      } else {
+        if (
+          (inNodeIds === null || [inNodeIds].flat().find(id => id === edge.i))
+          && (outNodeIds === null || [outNodeIds].flat().find(id => id === edge.o))
+        ) {
+          set.delete(edge);
+        }
+      }
+    };
+    [types && types.length ? types : null].flat().forEach(type => {
+      if (type === null) {
+        this.edgeMap.forEach((edgeSet, node) => {
+          edgeSet.forEach(checkAndClean);
+        });
+      } else {
+        const typeNode = this.nodeMap.get(type);
+        if (typeNode && this.edgeMap.has(typeNode)) {
+          this.edgeMap.get(typeNode)!.forEach(checkAndClean);
+        }
+      }
+    });
+  }
+
+  public query(initialNode?: string) {
+
   }
 }

@@ -8,9 +8,11 @@ import { Toolbar } from 'src/components/Toolbar/Toolbar';
 import { Settings } from 'src/components/Settings';
 import { Breadcrumbs } from 'src/components/Breadcrumbs/Breadcrumbs';
 
+import GraphStone from 'src/common/GraphStone';
 import { prepareInitialGraph } from 'src/common/initialGraph';
 
-window.FFF = prepareInitialGraph();
+// @ts-ignore
+window.graphStone = new GraphStone();
 
 export const Main = () => {
   return (
