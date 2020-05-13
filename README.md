@@ -1,4 +1,5 @@
 # Stiokit
+*(prealpha)*
 
 Visual frontend IDE.
 
