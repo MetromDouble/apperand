@@ -1,122 +1,165 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 
-export interface NodeInput<T = unknown> {
-  id?: string;
-  name: string;
-  meta?: T;
+type ID = string;
+type DataNodeID = ID;
+type ConNodeID = ID;
+type DivNodeID = ID;
+
+type DataRef = null | string | number | boolean | object;
+
+interface RawDataNode {
+    id: DataNodeID;
+    i: Record<DataNodeID, ConNodeID>;
+    o: Record<DataNodeID, DivNodeID>;
+    name: string;
+    data: DataRef;
 }
 
-export interface Node extends NodeInput {
-  id: string;
+interface RawConNode {
+    id: ConNodeID;
+    i: Array<DivNodeID>;
+    o: DataNodeID;
 }
 
-export interface Edge {
-  type: string;
-  i: string;
-  o: string;
+interface RawDivNode {
+    id: DivNodeID;
+    i: DataNodeID;
+    o: Array<ConNodeID>;
 }
 
-export interface Graph {
-  nodes: Node[],
-  edges: Edge[],
+interface DataNode {
+    id: DataNodeID;
+    i: Map<DataNode, ConNode>;
+    o: Map<DataNode, DivNode>;
+    name: string;
+    data: DataRef;
 }
 
-type Index = WeakMap<Node, {
-  forward: WeakMap<Edge, Node>;
-  backward: WeakMap<Edge, Node>;
-}>
+interface ConNode {
+    id: ConNodeID;
+    i: Set<DivNode>;
+    o: DataNode;
+}
 
-export default class GraphStone {
-  private nodeMap: Map<string, Node> = new Map();
-  private edgeMap: Map<Node, Set<Edge>> = new Map();
-  private indexMap: Index = new WeakMap();
+interface DivNode {
+    id: DivNodeID;
+    i: DataNode;
+    o: Set<ConNode>;
+}
 
-  public addNodes(nodes: NodeInput | NodeInput[]): string[] {
-    const created: string[] = [];
-    [nodes].flat().forEach(_node => {
-      const id = _node.id || nanoid();
-      created.push(id);
-      const node = {
-        ..._node,
-        id: _node.id || id
-      };
-      this.nodeMap.set(node.id, node);
-      if (!this.indexMap.has(node))
-        this.indexMap.set(node, { forward: new WeakMap(), backward: new WeakMap() });
-    });
+interface Nodes {
+    data: Map<DataNodeID, DataNode>;
+    con: Map<ConNodeID, ConNode>;
+    div: Map<DivNodeID, DivNode>;
+}
 
-    return created;
-  }
+export class GraphStone {
+    private nodes: Nodes = {
+        data: new Map(),
+        con: new Map(),
+        div: new Map(),
+    }
 
-  public removeNodes(nodeIds: string | string[]): void {
-    [nodeIds].flat().forEach(nodeId => {
-      const node = this.nodeMap.get(nodeId);
-      if (node) {
-        this.nodeMap.delete(nodeId);
-        this.removeEdges(null, nodeId, null);
-        this.removeEdges(null, null, nodeId);
-      }
-    });
-  }
+    public constructor() {
 
-  public addEdges(edges: Edge | Edge[]): void {
-    [edges].flat().forEach(edge => {
-      const inNode = this.nodeMap.get(edge.i);
-      const outNode = this.nodeMap.get(edge.o);
-      const typeNode = this.nodeMap.get(edge.type);
+    }
 
-      if (inNode && outNode && typeNode) {
-        if (!this.edgeMap.has(typeNode))
-          this.edgeMap.set(typeNode, new Set());
-        this.edgeMap.get(typeNode)!.add(edge);
+    createNode(name: string, data: DataRef) {
+        const id: DataNodeID = nanoid();
+        const node: DataNode = {
+            id,
+            i: new Map(),
+            o: new Map(),
+            name,
+            data
+        };
+        this.nodes.data.set(nanoid(), node);
+    }
 
-        if (!this.indexMap.has(inNode))
-          this.indexMap.set(inNode, { forward: new WeakMap(), backward: new WeakMap() });
-        if (!this.indexMap.has(outNode))
-          this.indexMap.set(outNode, { forward: new WeakMap(), backward: new WeakMap() });
-        const inNodeIndex = this.indexMap.get(inNode);
-        const outNodeIndex = this.indexMap.get(outNode);
+    updateNode(id: DataNodeID, name: string, data: DataRef) {
+        const node = this.nodes.data.get(id);
+        if (!node) return;
 
-        if (!inNodeIndex!.forward.has(edge))
-          inNodeIndex!.forward.set(edge, outNode);
-        if (!outNodeIndex!.backward.has(edge))
-          outNodeIndex!.backward.set(edge, inNode);
-      }
-    });
-  }
+        const updatedNode: DataNode = {
+            ...node,
+            name,
+            data
+        };
+        this.nodes.data.set(id, updatedNode);
+    }
 
-  public removeEdges(
-    types: string | string[] | null,
-    inNodeIds: string | string[] | null,
-    outNodeIds: string | string[] | null,
-  ): void {
-    const checkAndClean = (edge: Edge, _: unknown, set: Set<Edge>) => {
-      if (inNodeIds === null && outNodeIds === null) {
-        set.clear();
-      } else {
-        if (
-          (inNodeIds === null || [inNodeIds].flat().find(id => id === edge.i))
-          && (outNodeIds === null || [outNodeIds].flat().find(id => id === edge.o))
-        ) {
-          set.delete(edge);
-        }
-      }
-    };
-    [types && types.length ? types : null].flat().forEach(type => {
-      if (type === null) {
-        this.edgeMap.forEach((edgeSet, node) => {
-          edgeSet.forEach(checkAndClean);
+    deleteNode(id: DataNodeID) {
+        const node = this.nodes.data.get(id);
+        if (!node) return;
+
+        node.o.forEach(divNode => {
+            divNode.o.forEach(conNode => {
+                conNode.i.delete(divNode);
+            });
+            this.nodes.div.delete(divNode.id);
         });
-      } else {
-        const typeNode = this.nodeMap.get(type);
-        if (typeNode && this.edgeMap.has(typeNode)) {
-          this.edgeMap.get(typeNode)!.forEach(checkAndClean);
+        node.i.forEach(conNode => {
+            conNode.i.forEach(divNode => {
+                divNode.o.delete(conNode);
+            });
+            this.nodes.con.delete(conNode.id);
+        });
+        this.nodes.data.delete(id);
+    }
+
+    singleConnect(idA: DataNodeID, idType: DataNodeID, idB: DataNodeID) {
+        const nodeA = this.nodes.data.get(idA);
+        const nodeB = this.nodes.data.get(idB);
+        const type = this.nodes.data.get(idType);
+        if (!nodeA || !nodeB || !type) return;
+
+        let divNode: DivNode = {
+            id: nanoid(),
+            i: nodeA,
+            o: new Set(),
+        };
+        let conNode: ConNode = {
+            id: nanoid(),
+            i: new Set(),
+            o: nodeB,
+        };
+
+        if (nodeA.o.has(type)) {
+            divNode = <DivNode>nodeA.o.get(type);
+        } else {
+            this.nodes.div.set(divNode.id, divNode);
+            nodeA.o.set(type, divNode);
         }
-      }
-    });
-  }
+        if (nodeB.i.has(type)) {
+            conNode = <ConNode>nodeB.i.get(type);
+        } else {
+            this.nodes.con.set(conNode.id, conNode);
+            nodeB.i.set(type, conNode);
+        }
 
-  public query(initialNode?: string) {
+        divNode.o.add(conNode);
+        conNode.i.add(divNode);
+    }
 
-  }
+    singleDisconnect(idA: DataNodeID, idType: DataNodeID, idB: DataNodeID) {
+        const nodeA = this.nodes.data.get(idA);
+        const nodeB = this.nodes.data.get(idB);
+        const type = this.nodes.data.get(idType);
+        if (!nodeA || !nodeB || !type) return;
+
+        const divNode = nodeA.o.get(type);
+        const conNode = nodeB.i.get(type);
+        if (!divNode || !conNode) return;
+
+        divNode.o.delete(conNode);
+        if (divNode.o.size === 0) {
+            nodeA.o.delete(type);
+            this.nodes.div.delete(divNode.id);
+        }
+        conNode.i.delete(divNode);
+        if (conNode.i.size === 0) {
+            nodeB.i.delete(type);
+            this.nodes.con.delete(conNode.id);
+        }
+    }
 }

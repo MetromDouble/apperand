@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import OverlayTrigger, { TriggerType, DelayObject } from 'src/components/Overlay/OverlayTrigger';
 import { OverlayContext } from 'src/components/Overlay/OverlayContext';

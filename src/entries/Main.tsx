@@ -1,4 +1,5 @@
 import React from 'react';
+import { customAlphabet } from 'nanoid';
 
 import GridArea from 'src/components/Grid/GridArea';
 import GridContainer from 'src/components/Grid/GridContainer';
@@ -8,11 +9,12 @@ import { Toolbar } from 'src/components/Toolbar/Toolbar';
 import { Settings } from 'src/components/Settings';
 import { Breadcrumbs } from 'src/components/Breadcrumbs/Breadcrumbs';
 
-import GraphStone from 'src/common/GraphStone';
-import { prepareInitialGraph } from 'src/common/initialGraph';
+// import GraphStone2 from 'src/common/GraphStone2';
+// import { init } from 'src/common/initGraph';
 
+const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890', 24);
 // @ts-ignore
-window.graphStone = new GraphStone();
+window.nanoid = nanoid;
 
 export const Main = () => {
   return (
